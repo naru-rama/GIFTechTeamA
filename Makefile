@@ -1,0 +1,7 @@
+up:
+	docker compose up
+init:
+	chmod +x ./get-local-ip-addr.sh
+	./get-local-ip-addr.sh
+down:
+	docker compose down

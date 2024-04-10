@@ -17,7 +17,7 @@
     "@react-native-firebase/app": "^19.1.2",
     "@react-navigation/native": "^6.0.2",
     "babel-plugin-dotenv-import": "^3.0.1",
-    "expo": "~50.0.14",
+    "expo": "^50.0.15",
     "expo-font": "~11.10.3",
     "expo-linking": "~6.2.2",
     "expo-router": "~3.4.8",

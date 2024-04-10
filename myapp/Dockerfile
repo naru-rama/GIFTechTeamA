@@ -11,5 +11,3 @@ RUN yarn global add expo
 RUN yarn install
 
 COPY .env.example .env
-
-CMD yarn start

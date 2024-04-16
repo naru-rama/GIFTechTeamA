@@ -6,8 +6,17 @@ import db from '../../utils/firebase';
 import { collection, addDoc, getDocs } from "firebase/firestore"; 
 import { Button } from 'react-native-elements/dist/buttons/Button';
 
+import { registerForPushNotificationsAsync } from '../../components/NotificationsManager';
+import { useEffect } from 'react';
+import * as Notifications from 'expo-notifications';
 
 export default function TabOneScreen() {
+
+  //Ask for permission to push notification
+  useEffect(() => {
+    registerForPushNotificationsAsync();
+  }, []);
+
   // データ取得サンプル
   const getData = async () => {
     console.log("Getting data");
@@ -26,6 +35,19 @@ export default function TabOneScreen() {
     console.log("Document written with ID: ", docRef.id);
   }
 
+  //func to send push notification that is scheduled.
+  const scheduleNotificationAsync = async () => {
+    await Notifications.scheduleNotificationAsync({
+      content: {
+        body: 'test' // body of the notification
+      },
+      trigger: {
+        seconds: 3, // after 3 seconds
+      }
+    })
+  }
+
+  // プッシュ通知をスケジュールする
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Tab One Hello</Text>
@@ -33,6 +55,11 @@ export default function TabOneScreen() {
       <EditScreenInfo path="app/(tabs)/index.tsx" />
       <Button title="データ取得" onPress={getData} />
       <Button title="データ追加" onPress={addData} />
+      {/* send push notification */}
+      <Button
+        title='3秒後にプッシュ通知する'
+        onPress={scheduleNotificationAsync}
+      />
     </View>
   );
 }

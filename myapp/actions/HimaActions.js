@@ -1,14 +1,6 @@
 import { collection, getDocs, addDoc, updateDoc, doc, getDoc } from "firebase/firestore";
 import db from "../utils/firebase";
 
-export const getData = async () => {
-    console.log("Getting data from hima actions");
-    const snap = await getDocs(collection(db, "ramen"));
-    snap.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data().name}`);
-    });
-}
-
 export const getAllHimaItems = async () => {
     console.log("Getting data from himaItem actions");
     console.log(new Date());

@@ -37,16 +37,13 @@ elsif podfile_properties.key?('ios.flipper') then
   end
 end
 
-use_frameworks! :linkage => :static
-target 'HimaApp' do
+target 'myapp' do
   use_expo_modules!
+  use_modular_headers!
   config = use_native_modules!
 
-  pod 'FirebaseCore', :modular_headers => true
-  pod 'GoogleUtilities', :modular_headers => true
-
-  # use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
-  # use_frameworks! :linkage => ENV['USE_FRAMEWORKS'].to_sym if ENV['USE_FRAMEWORKS']
+  use_frameworks! :linkage => podfile_properties['ios.useFrameworks'].to_sym if podfile_properties['ios.useFrameworks']
+  use_frameworks! :linkage => ENV['USE_FRAMEWORKS'].to_sym if ENV['USE_FRAMEWORKS']
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -84,7 +81,3 @@ target 'HimaApp' do
     end
   end
 end
-
-# target 'ImageNotification' do
-#   pod 'Firebase/Messaging', '~> 10.24.0' # eg 6.31.0
-# end

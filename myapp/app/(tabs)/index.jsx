@@ -5,6 +5,7 @@ import { Text, View } from '@/components/Themed';
 import db from '../../utils/firebase';
 import { collection, addDoc, getDocs } from "firebase/firestore"; 
 import { Button } from 'react-native-elements/dist/buttons/Button';
+import { addHimaItem, getAllHimaItems, completeHimaItem } from '../../actions/HimaActions';
 
 import { registerForPushNotificationsAsync } from '../../components/NotificationsManager';
 import { useEffect } from 'react';
@@ -18,13 +19,13 @@ export default function TabOneScreen() {
   }, []);
 
   // データ取得サンプル
-  const getData = async () => {
-    console.log("Getting data");
-    const snap = await getDocs(collection(db, "ramen"));
-    snap.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data().name}`);
-    });
-  }
+  // const getData = async () => {
+  //   console.log("Getting data");
+  //   const snap = await getDocs(collection(db, "ramen"));
+  //   snap.forEach((doc) => {
+  //     console.log(`${doc.id} => ${doc.data().name}`);
+  //   });
+  // }
 
   // データ追加サンプル
   const addData = async () => {
@@ -34,6 +35,7 @@ export default function TabOneScreen() {
     });
     console.log("Document written with ID: ", docRef.id);
   }
+  
 
   //func to send push notification that is scheduled.
   const scheduleNotificationAsync = async () => {
@@ -53,8 +55,9 @@ export default function TabOneScreen() {
       <Text style={styles.title}>Tab One Hello</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
       <EditScreenInfo path="app/(tabs)/index.tsx" />
-      <Button title="データ取得" onPress={getData} />
-      <Button title="データ追加" onPress={addData} />
+      <Button title="データ取得" onPress={getAllHimaItems} />
+      <Button title="データ追加" onPress={() => addHimaItem('暇暇')} />
+      <Button title="タスク完了" onPress={() => completeHimaItem('1sHQBi9fdCcReAFjXcZ9')} />
       {/* send push notification */}
       <Button
         title='3秒後にプッシュ通知する'

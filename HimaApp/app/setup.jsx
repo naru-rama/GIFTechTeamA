@@ -6,7 +6,7 @@ import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import messaging from '@react-native-firebase/messaging';
 import Constants from 'expo-constants';
 
-export default function App() {
+export default function Tab() {
   const [permissions, setPermissions] = useState({});
   const [appState, setAppState] = useState(AppState.currentState);
 

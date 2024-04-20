@@ -12,7 +12,7 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
+  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
 }
 
 export default function TabLayout() {
@@ -22,15 +22,13 @@ export default function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
       }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'ヒマホーム',
+          tabBarIcon: ({ color }) => <TabBarIcon name="home" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -48,10 +46,24 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="himaIndex"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'ヒマ辞典',
+          tabBarIcon: ({ color }) => <TabBarIcon name="list" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="himaData"
+        options={{
+          title: 'ヒマデータ',
+          tabBarIcon: ({ color }) => <TabBarIcon name="database" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="himaSettings"
+        options={{
+          title: '設定',
+          tabBarIcon: ({ color }) => <TabBarIcon name="cogs" color={color} />,
         }}
       />
     </Tabs>

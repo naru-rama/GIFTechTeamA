@@ -2,9 +2,13 @@
   "expo": {
     "name": "HimaApp",
     "slug": "HimaApp",
+    "scheme": "HimaApp",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
+    ],
+    "plugins": [
+      "expo-router"
     ]
   }
 }

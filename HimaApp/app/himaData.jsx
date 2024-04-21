@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
-import { StyleSheet } from 'react-native';
-import { Text, View, Button } from '@/components/Themed';
+import { StyleSheet, Button } from 'react-native';
+import { Text, View} from '@/components/Themed';
 import SkiaChart, { SVGRenderer } from '@wuba/react-native-echarts/skiaChart';
 import * as echarts from 'echarts/core';
 import { LineChart } from 'echarts/charts';

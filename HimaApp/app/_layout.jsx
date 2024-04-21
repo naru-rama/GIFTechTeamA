@@ -128,6 +128,8 @@ function RootLayoutNav() {
 
                 {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
                 <Stack.Screen name="home" options={{ headerShown: false }} />
+                <Stack.Screen name="himaData" />
+                <Stack.Screen name="himaIndex" />
                 <Stack.Screen name="setup" />
                 <Stack.Screen name="firebase" />
             </Stack>

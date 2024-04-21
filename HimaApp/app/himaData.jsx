@@ -44,7 +44,7 @@ export default function HimaData() {
                     <SkiaChart ref={skiaRef} />
                 </View>
                 <View style={styles.buttonsContainer}>
-                    <Button title="過去のヒマ (集計されたデータ)" onPress={() => { }} />
+                    <Button title="過去のヒマ (集計されたデータ)" onPress={() => { console.log('hello') }} />
                 </View>
             </View>
         </View>

@@ -1,14 +1,14 @@
 version: '3'
 services:
   myapp:
-    container_name: myapp-react-native
+    container_name: himaapp-react-native
     tty: true
     build:
-      context: ./myapp
+      context: ./HimaApp
       dockerfile: ./Dockerfile
     volumes:
       # - /myapp/node_modules
-      - ./myapp:/myapp
-    env_file: ./myapp/.env
+      - ./HimaApp:/HimaApp
+    env_file: ./HimaApp/.env
     ports:
       - 8081:8081

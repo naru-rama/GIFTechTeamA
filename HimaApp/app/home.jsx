@@ -7,6 +7,7 @@ import messaging from '@react-native-firebase/messaging';
 import Constants from 'expo-constants';
 import { Link } from 'expo-router';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import Footer from '../components/Footer';
 
 
 
@@ -24,31 +25,17 @@ export default function Home() {
         <Button title="データ追加" onPress={addData} />
       </View>
 
+      {/* ここからフッター */}
       <View
         style={{
-          height: 50,
           width: '100%',
           position: 'absolute',
           bottom: 0,
-          backgroundColor: 'red',
-          textAlign: 'center',
-          alignItems: 'center', // 中央に配置
-          justifyContent: 'center', // 中央に配置
         }}
       >
-        {/* <Link href="/setup">
-          <Icon name="cog" size={30} color="#900" />
-          <Text>設定</Text>
-        </Link> */}
-        <Link href="/himaData">
-          <Icon name="cog" size={30} color="#900" />
-          <Text>暇データ</Text>
-        </Link>
-        <Link href="/firebase">
-          <Icon name="cog" size={30} color="#900" />
-          <Text>firebase</Text>
-        </Link>
+        {Footer()}
       </View>
+      {/* ここまでフッター */}
     </View>
   );
 }

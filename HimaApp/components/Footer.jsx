@@ -10,7 +10,7 @@ const Footer = () => {
                 <TouchableOpacity style={styles.chip}>
                     <View style={styles.chipItem}>
                         <Text style={styles.emoji}>📔</Text>
-                        <Text>ヒマ充電</Text>
+                        <Text style={styles.text}>ヒマ辞典</Text>
                     </View>
                 </TouchableOpacity>
             </Link>
@@ -19,7 +19,7 @@ const Footer = () => {
                 <TouchableOpacity style={styles.chip}>
                     <View style={styles.chipItem}>
                         <Text style={styles.emoji}>🥱</Text>
-                        <Text>ヒマデータ</Text>
+                        <Text style={styles.text}>ヒマデータ</Text>
                     </View>
                 </TouchableOpacity>
             </Link>
@@ -29,7 +29,7 @@ const Footer = () => {
             <Link href="himaSettings" asChild>
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.emoji}>💬</Text>
-                    <Text>通知設定</Text>
+                    <Text style={styles.text}>通知設定</Text>
                     {/* <Image source={require('./path-to-your-icon2.png')} style={styles.icon} /> */}
                 </TouchableOpacity>
             </Link>
@@ -41,9 +41,9 @@ const styles = StyleSheet.create({
     footer: {
         flexDirection: 'row',
         backgroundColor: '#2A8967',
-        justifyContent: 'space-between',
+        justifyContent: 'space-around',
         paddingVertical: 20,
-        paddingHorizontal: 40,
+        paddingHorizontal: 10,
         flex: 1, // 100%の高さを取得
         alignItems: 'center',
     },
@@ -80,6 +80,10 @@ const styles = StyleSheet.create({
     },
     spacerBar: {
         fontSize: 40,
+    },
+    text: {
+        color: '#FFFFFF', // 文字色を白に設定
+        fontWeight: 'bold' // 文字を太く設定
     },
 });
 

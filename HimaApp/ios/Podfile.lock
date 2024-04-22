@@ -1203,6 +1203,7 @@ DEPENDENCIES:
   - EXSplashScreen (from `../node_modules/expo-splash-screen/ios`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
+  - Firebase/Messaging (~> 10.24.0)
   - FirebaseCore
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - GoogleUtilities
@@ -1484,8 +1485,8 @@ SPEC CHECKSUMS:
   RNGestureHandler: 0c8b0283d2aff561162b2f55c604d2f1f8e2c4ea
   RNScreens: a4d9ce8f68f833f4e42410140eafd88e38bba163
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
-  Yoga: 805bf71192903b20fc14babe48080582fee65a80
+  Yoga: d17d2cc8105eed528474683b42e2ea310e1daf61
 
-PODFILE CHECKSUM: 24e4143d0dc4b6ea145c69b2a788bb0ed04bc4f8
+PODFILE CHECKSUM: d92c9fe4cc1cff22c6cfa841cb67c14932a9bf7f
 
 COCOAPODS: 1.15.2

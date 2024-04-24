@@ -96,8 +96,10 @@ target 'HimaApp' do
   end
 end
 
+$NotifeeExtension = true
  target 'ImageNotification' do
    pod 'Firebase/Messaging', '~> 10.24.0' # eg 6.31.0
+   pod 'RNNotifeeCore', :path => '../node_modules/@notifee/react-native/RNNotifeeCore.podspec'
  end
 
 # target 'HimaWidgetExtension'

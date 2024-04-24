@@ -9,7 +9,7 @@ import { Link } from 'expo-router';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Footer from '../components/Footer';
 import { NativeModules } from 'react-native';
-
+import Notifee from './notifee';
 
 
 export default function Home() {
@@ -43,12 +43,13 @@ export default function Home() {
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
       <View style={styles.buttonWrap}>
-        <Button title="データ追加" onPress={addData} />
+        <Button title="データ追加a" onPress={addData} />
       </View>
       <View style={styles.buttonWrap}>
         <Button title="終了" onPress={finishButton} />
       </View>
       <NewModuleButton />
+      <Notifee />
 
       {/* ここからフッター */}
       <View

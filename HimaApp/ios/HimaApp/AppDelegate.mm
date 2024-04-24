@@ -6,6 +6,7 @@
 #import <UserNotifications/UserNotifications.h>
 #import <RNCPushNotificationIOS.h>
 #import <Firebase.h>
+#import <NotifeeCore.h>
 
 @implementation AppDelegate
 

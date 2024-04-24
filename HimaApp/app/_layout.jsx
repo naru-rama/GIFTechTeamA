@@ -6,7 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { AppState } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import notifee from '@notifee/react-native';
+import notifee, { EventType } from '@notifee/react-native';
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -25,133 +25,122 @@ export const unstable_settings = {
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
+notifee.onForegroundEvent(({ type, detail }) => {
+    console.log('Foreground event:', type, detail.notification, detail.pressAction);
+    switch (type) {
+        case EventType.DISMISSED:
+            console.log('User dismissed notification', detail.notification);
+            break;
+        case EventType.PRESS:
+            console.log('User pressed notification', detail.notification);
+            break;
+        case EventType.ACTION_PRESS:
+            console.log('User pressed action', detail.pressAction);
+            break;
+    }
+});
+
+notifee.onBackgroundEvent(async (data) => {
+    console.log('Background event:', data);
+    const { notification, pressAction } = detail;
+
+    // Check if the user pressed the "Mark as read" action
+    if (type === EventType.ACTION_PRESS && pressAction.id === 'view-post') {
+        console.log('User pressed "Mark as read" action');
+        // Update external API
+        // await fetch(`https://my-api.com/chat/${notification.data.chatId}/read`, {
+        //     method: 'POST',
+        // });
+
+        // Remove the notification
+        await notifee.cancelNotification(notification.id);
+    }
+});
+
 export default function RootLayout() {
     const [loaded, error] = useFonts({
         SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
         ...FontAwesome.font,
     });
 
-    const localNotification = () => {
-        PushNotificationIOS.addNotificationRequest({
-            id: 'userAction',
-            title: 'Local Notification',
-            body: 'This is a local notification',
-            identifier: 'local-notification',
-            category: 'userAction',
-            threadIdentifier: 'local-notification',
-            userInfo: { data: 'data' },
-            badge: 1,
-            sound: 'default',
-            fireDate: new Date().getTime() + 3000,
-        });
-    }
 
-    const [appState, setAppState] = useState(AppState.currentState);
-    // フォアグラウンドでのメッセージ受信
-    useEffect(() => {
-        const unsubscribe = messaging().onMessage(async remoteMessage => {
-            console.log('A new FCM message arrived!', JSON.stringify(remoteMessage));
-            localNotification();
-            // Alert.alert('A new FCM message arrived!', JSON.stringify(remoteMessage));
-        });
-
-        return unsubscribe;
-    }, []);
-
-    // バックグラウンドでのメッセージ受信
-    const onNotificationOpenedApp = async () => {
-        const notificationOpen = await messaging().getInitialNotification();
-        if (notificationOpen) {
-            console.log('On Initial Notification:', notificationOpen);
-            // Alert.alert('Initial Notification:', JSON.stringify(notificationOpen));
-        }
-    }
-
-    // アプリがバックグラウンドからフォアグラウンドに戻った時のメッセージ受信
-    const getInitialNotification = async () => {
-        const initialNotification = await messaging().getInitialNotification();
-        onRemoteNotification(initialNotification);
-        console.log('Get Initial Notification:', initialNotification);
-    }
-    
-
-    const onRemoteNotification = (notification) => {
-        console.log('Remote Notification:', notification);
-        const isClicked = notification.getData().userInteraction === 1;
-
-        if (isClicked) {
-            console.log('User clicked on notification');
-            // Navigate user to another screen
-        } else {
-            // Do something else with push notification
-        }
-        // Use the appropriate result based on what you needed to do for this notification
-        const result = PushNotificationIOS.FetchResult.NoData;
-        notification.finish(result);
-    };
-
-    // useEffect(() => {
-    //     const type = 'notification';
-    //     console.log('Add event listener for:', type);
-    //     PushNotificationIOS.addEventListener(type, onRemoteNotification);
-    //     return () => {
-    //         PushNotificationIOS.removeEventListener(type);
-    //     };
-    // }, []);
-
-    useEffect(() => {
-        console.log('Add event listener for:', 'register');
-        var res = PushNotificationIOS.addEventListener('register', (token) => {
-            console.log('Token:', token);
-        });
-        console.log('Result:', res);
-    }, []);
-    const setNotificationCategories = () => {
-        PushNotificationIOS.setNotificationCategories([
+    async function setCategories() {
+        await notifee.setNotificationCategories([
             {
-                id: 'userAction',
+                id: 'message',
                 actions: [
-                    { id: 'open', title: 'Open', options: { foreground: true } },
                     {
-                        id: 'ignore',
-                        title: 'Desruptive',
-                        options: { foreground: true, destructive: true },
+                        id: 'view-post',
+                        title: 'View post',
+                        foreground: true,
                     },
                     {
-                        id: 'text',
-                        title: 'Text Input',
-                        options: { foreground: true },
-                        textInput: { buttonTitle: 'Send' },
+                        id: 'delete-chat',
+                        title: 'Delete chat',
+                        destructive: true,
+                        // Only show if device is unlocked
+                        authenticationRequired: true,
                     },
                 ],
             },
         ]);
-    };
-    setNotificationCategories();
-
-    // Quit状態からのメッセージ受信
-    useEffect(() => {
-        onNotificationOpenedApp();
     }
-        , []);
 
-    // アプリがバックグラウンドからフォアグラウンドに戻った時のメッセージ受信
+    function onMessageReceived(message) {
+        console.log('Received a message', message);
+        const { type, text } = message.data;
+
+        if (type === 'order_shipped') {
+            // notifee.displayNotification({
+            //     title: 'Your order has been shipped',
+            //     body: `Your order was shipped at ${text}!`,
+            //     android: {
+            //         channelId: 'orders',
+            //     },
+            // });
+            notifee.displayNotification({
+                title: 'Action',
+                body: `hey!`,
+                android: {
+                    channelId: 'orders',
+                },
+                ios: {
+                    categoryId: 'message',
+                },
+            });
+        }
+    }
+
     useEffect(() => {
-        const subscription = AppState.addEventListener("change", nextAppState => {
-            if (appState.match(/inactive|background/) && nextAppState === "active") {
-                console.log("アプリがフォアグラウンドに戻りました！");
-                getInitialNotification();
-                // 
-                // ここに実行したい関数を呼び出す
-                //
-            }
-            setAppState(nextAppState);
-        });
 
-        return () => {
-            subscription.remove();
-        };
-    }, [appState]);
+        messaging().onMessage(message => {
+            console.log('on message');
+            onMessageReceived(message);
+        });
+        messaging().setBackgroundMessageHandler(message => {
+            console.log('on background message');
+            onMessageReceived(message);
+        });
+    }, []);
+
+
+    const [loading, setLoading] = useState(true);
+
+    // Bootstrap sequence function
+    async function bootstrap() {
+        const initialNotification = await notifee.getInitialNotification();
+
+        if (initialNotification) {
+            console.log('Notification caused application to open', initialNotification.notification);
+            console.log('Press action used to open the app', initialNotification.pressAction);
+        }
+    }
+
+    useEffect(() => {
+        bootstrap()
+            .then(() => setLoading(false))
+            .catch(console.error);
+    }, []);
 
 
     // Expo Router uses Error Boundaries to catch errors in the navigation tree.

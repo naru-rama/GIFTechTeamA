@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
     StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Platform,
-    TouchableOpacity, Keyboard, Image, Modal
+    TouchableOpacity, Keyboard, Image, Modal, FlatList
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { addHimaItem, getAllHimaItems } from '../actions/HimaActions';
@@ -45,6 +45,22 @@ export default function himaIndex() {
 
     const handleBackPress = () => {
         navigation.goBack();
+    };
+
+    const getColorByCount = (count) => {
+        if (count <= 3) {
+            return '#F2D0FF';
+        } else if (count <= 10) {
+            return '#55FFE0';
+        } else if (count <= 20) {
+            return '#FF9C64';
+        } else if (count <= 30) {
+            return '#FCFE5C';
+        } else {
+            return '#FFFFFF';
+        }
+
+        return count >= 10 ? 'red' : 'white';
     };
 
     return (
@@ -96,7 +112,7 @@ export default function himaIndex() {
                     onValueChange={(itemValue, itemIndex) => setSelectedItem(itemValue)}
                 >
                     {himaItems.map((item, index) => (
-                        <Picker.Item key={index} label={item.name} value={item.name} />
+                        <Picker.Item key={index} label={item.name} value={item.name} color={getColorByCount(item.doneCount)} fontSize={30}/>
                     ))}
                 </Picker>
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
@@ -262,9 +278,8 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     picker: { 
-        height: 50, 
-        width: 150,
-        color: 'white',
+        height: 400, 
+        width: 400,
     },
     chipItem: {
         flexDirection: 'row',

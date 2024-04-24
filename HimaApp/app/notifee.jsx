@@ -5,43 +5,73 @@ import notifee from '@notifee/react-native';
 export default function Notifee() {
     async function onDisplayNotification() {
         // Request permissions (required for iOS)
-        await notifee.requestPermission()
+        
 
-        // Create a channel (required for Android)
-        const channelId = await notifee.createChannel({
-            id: 'default',
-            name: 'Default Channel',
-        });
+        
 
-        // Display a notification
-        // await notifee.displayNotification({
-        //     title: 'Notification Title',
-        //     body: 'Main body content of the notification',
-        //     android: {
-        //         channelId,
-        //         smallIcon: 'name-of-a-small-icon', // optional, defaults to 'ic_launcher'.
-        //         // pressAction is needed if you want the notification to open the app when pressed
-        //         pressAction: {
-        //             id: 'default',
+        // notifee.displayNotification({
+        //         title: 'Action',
+        //         body: `hey!`,
+        //         android: {
+        //             channelId: 'orders',
         //         },
-        //     },
-        // });
-        await notifee.requestPermission();
-        notifee.displayNotification({
-                title: 'Action',
-                body: `hey!`,
-                android: {
-                    channelId: 'orders',
+        //         ios: {
+        //             categoryId: 'are-you-free',
+        //         },
+        //     });
+    }
+    const setCategories = async function () {
+        await notifee.requestPermission()
+        const areYouFree = {
+            id: 'are-you-free',
+            actions: [
+                {
+                    id: 'yes',
+                    title: 'ヒマよ〜ん🥱',
+                    foreground: true,
                 },
-                ios: {
-                    categoryId: 'message',
+                {
+                    id: 'soso',
+                    title: '微妙っ😉',
+                    foreground: false,
                 },
-            });
+                {
+                    id: 'no',
+                    title: '後にして😘',
+                    foreground: false,
+                },
+            ],
+        };
+        const robot = {
+            id: 'robot-alert',
+            actions: [
+                {
+                    id: 'yes',
+                    title: 'ヒマデス🤖',
+                    foreground: true,
+                },
+                {
+                    id: 'soso',
+                    title: 'ポッポー＞🐦',
+                    foreground: false,
+                },
+                {
+                    id: 'no',
+                    title: '緊急速報、仕事中✌️',
+                    foreground: false,
+                },
+            ],
+        };
+        await notifee.setNotificationCategories([
+            areYouFree,
+            robot,
+        ]);
+        console.log('setCategories');
     }
 
     return (
         <View>
-            <Button title="Display Notification" onPress={() => onDisplayNotification()} />
+            <Button title="Display Notification" onPress={async () => setCategories()} />
         </View>
     );
 }

@@ -10,9 +10,23 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Footer from '../components/Footer';
 import { NativeModules } from 'react-native';
 import Notifee from './notifee';
+import Modal from "react-native-modal";
+import CompletedModal from '../components/CompletedModal';
+import { useLocalSearchParams } from 'expo-router';
 
 
 export default function Home() {
+  const { isCompletedModalVisible } = useLocalSearchParams();
+  console.log(isCompletedModalVisible);
+  const [isModalVisible, setModalVisible] = useState(isCompletedModalVisible ?? false);
+  useEffect(() => {
+    console.log("isCompletedModalVisible", isCompletedModalVisible);
+    setModalVisible(isCompletedModalVisible == 'true');
+  }, [isCompletedModalVisible]);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   const addData = async () => {
     console.log("Adding data");
   }
@@ -50,6 +64,7 @@ export default function Home() {
       </View>
       <NewModuleButton />
       <Notifee />
+      <Button title="Show modal" onPress={toggleModal} />
 
       {/* ここからフッター */}
       <View
@@ -62,6 +77,7 @@ export default function Home() {
         {Footer()}
       </View>
       {/* ここまでフッター */}
+      <CompletedModal isVisible={isModalVisible} onClose={toggleModal} />
     </View>
   );
 }

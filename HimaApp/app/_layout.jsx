@@ -7,6 +7,7 @@ import { AppState } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import notifee, { EventType } from '@notifee/react-native';
+import { useRouter } from "expo-router";
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -25,66 +26,104 @@ export const unstable_settings = {
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-notifee.onForegroundEvent(({ type, detail }) => {
-    console.log('Foreground event:', type, detail.notification, detail.pressAction);
-    switch (type) {
-        case EventType.DISMISSED:
-            console.log('User dismissed notification', detail.notification);
-            break;
-        case EventType.PRESS:
-            console.log('User pressed notification', detail.notification);
-            break;
-        case EventType.ACTION_PRESS:
-            console.log('User pressed action', detail.pressAction);
-            break;
-    }
-});
 
-notifee.onBackgroundEvent(async (data) => {
-    console.log('Background event:', data);
-    const { notification, pressAction } = detail;
-
-    // Check if the user pressed the "Mark as read" action
-    if (type === EventType.ACTION_PRESS && pressAction.id === 'view-post') {
-        console.log('User pressed "Mark as read" action');
-        // Update external API
-        // await fetch(`https://my-api.com/chat/${notification.data.chatId}/read`, {
-        //     method: 'POST',
-        // });
-
-        // Remove the notification
-        await notifee.cancelNotification(notification.id);
-    }
-});
 
 export default function RootLayout() {
     const [loaded, error] = useFonts({
         SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
         ...FontAwesome.font,
     });
-
-
-    async function setCategories() {
-        await notifee.setNotificationCategories([
-            {
-                id: 'message',
-                actions: [
-                    {
-                        id: 'view-post',
-                        title: 'View post',
-                        foreground: true,
+    const router = useRouter();
+    
+    const areYouFreeScenario = async (detail) => {
+        switch (detail.pressAction.id) {
+            case 'yes':
+                console.log('User pressed YES');
+                const notiId = await notifee.displayNotification({
+                    title: 'いいね〜',
+                    android: {
+                        channelId: 'orders',
                     },
-                    {
-                        id: 'delete-chat',
-                        title: 'Delete chat',
-                        destructive: true,
-                        // Only show if device is unlocked
-                        authenticationRequired: true,
+                    ios: {
+                        categoryId: 'response',
+                    }
+                })
+                await notifee.cancelNotification(notiId);
+                break;
+            case 'soso':
+                console.log('User pressed 微妙');
+                await notifee.displayNotification({
+                    title: 'またね〜',
+                    android: {
+                        channelId: 'orders',
                     },
-                ],
-            },
-        ]);
+                })
+                break;
+            case 'no':
+                console.log('User pressed No');
+                await notifee.displayNotification({
+                    title: 'またね〜',
+                    android: {
+                        channelId: 'orders',
+                    },
+                })
+                break;
+        }
     }
+    
+    const messageScenario = async (type, detail, category) => {
+        console.log('messageScenario', type, detail, category);
+        switch (type) {
+            case EventType.DISMISSED:
+                console.log('User dismissed notification');
+                break;
+            case EventType.PRESS:
+                if (category === 'summary') {
+                    console.log('User pressed notification');
+                    // move to home page
+                    router.push({
+                        pathname: 'home',
+                        params: {
+                            isCompletedModalVisible: true,
+                        },
+                    });
+                }
+                console.log('User pressed notification');
+                break;
+            case EventType.ACTION_PRESS:
+                console.log('User pressed action');
+                if (!category) break;
+                switch (category) {
+                    case 'are-you-free':
+                        await areYouFreeScenario(detail);
+                        break;
+                }
+                break;
+        }
+    }
+    useEffect(() => {
+        notifee.onForegroundEvent(async ({ type, detail }) => {
+            console.log('Foreground event:', type, detail.notification, detail.pressAction);
+            const category = detail.notification?.ios?.categoryId;
+            if (category && category === 'response') {
+                console.log('response');
+                return;
+            }
+            messageScenario(type, detail, category);
+            await notifee.cancelNotification(detail.notification.id);
+        });
+        
+        notifee.onBackgroundEvent(async ({type, detail}) => {
+            console.log('Background event:', type, detail);
+            const { notification, pressAction } = detail;
+            const category = notification?.ios?.categoryId;
+            if (category && category === 'response') return;
+            messageScenario(type, detail, category);
+            // Check if the user pressed the "Mark as read" action
+                // Remove the notification
+            await notifee.cancelNotification(notification.id);
+        });
+    }, []);
 
     function onMessageReceived(message) {
         console.log('Received a message', message);

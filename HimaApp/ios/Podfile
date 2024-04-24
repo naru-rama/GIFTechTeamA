@@ -7,7 +7,7 @@ podfile_properties = JSON.parse(File.read(File.join(__dir__, 'Podfile.properties
 ENV['RCT_NEW_ARCH_ENABLED'] = podfile_properties['newArchEnabled'] == 'true' ? '1' : '0'
 ENV['EX_DEV_CLIENT_NETWORK_INSPECTOR'] = podfile_properties['EX_DEV_CLIENT_NETWORK_INSPECTOR']
 
-platform :ios, podfile_properties['ios.deploymentTarget'] || '13.4'
+platform :ios, podfile_properties['ios.deploymentTarget'] || '17.4'
 install! 'cocoapods',
   :deterministic_uuids => false
 
@@ -56,7 +56,7 @@ target 'HimaApp' do
     # Note that if you have use_frameworks! enabled, Flipper will not work if enabled
     :flipper_configuration => flipper_config
   )
-
+  # use_flipper!()
   post_install do |installer|
     react_native_post_install(
       installer,
@@ -99,3 +99,5 @@ end
  target 'ImageNotification' do
    pod 'Firebase/Messaging', '~> 10.24.0' # eg 6.31.0
  end
+
+# target 'HimaWidgetExtension'

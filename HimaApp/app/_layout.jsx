@@ -6,6 +6,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { AppState } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
+import notifee from '@notifee/react-native';
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -42,7 +43,7 @@ export default function RootLayout() {
             badge: 1,
             sound: 'default',
             fireDate: new Date().getTime() + 3000,
-            });
+        });
     }
 
     const [appState, setAppState] = useState(AppState.currentState);
@@ -69,8 +70,64 @@ export default function RootLayout() {
     // アプリがバックグラウンドからフォアグラウンドに戻った時のメッセージ受信
     const getInitialNotification = async () => {
         const initialNotification = await messaging().getInitialNotification();
+        onRemoteNotification(initialNotification);
         console.log('Get Initial Notification:', initialNotification);
     }
+    
+
+    const onRemoteNotification = (notification) => {
+        console.log('Remote Notification:', notification);
+        const isClicked = notification.getData().userInteraction === 1;
+
+        if (isClicked) {
+            console.log('User clicked on notification');
+            // Navigate user to another screen
+        } else {
+            // Do something else with push notification
+        }
+        // Use the appropriate result based on what you needed to do for this notification
+        const result = PushNotificationIOS.FetchResult.NoData;
+        notification.finish(result);
+    };
+
+    // useEffect(() => {
+    //     const type = 'notification';
+    //     console.log('Add event listener for:', type);
+    //     PushNotificationIOS.addEventListener(type, onRemoteNotification);
+    //     return () => {
+    //         PushNotificationIOS.removeEventListener(type);
+    //     };
+    // }, []);
+
+    useEffect(() => {
+        console.log('Add event listener for:', 'register');
+        var res = PushNotificationIOS.addEventListener('register', (token) => {
+            console.log('Token:', token);
+        });
+        console.log('Result:', res);
+    }, []);
+    const setNotificationCategories = () => {
+        PushNotificationIOS.setNotificationCategories([
+            {
+                id: 'userAction',
+                actions: [
+                    { id: 'open', title: 'Open', options: { foreground: true } },
+                    {
+                        id: 'ignore',
+                        title: 'Desruptive',
+                        options: { foreground: true, destructive: true },
+                    },
+                    {
+                        id: 'text',
+                        title: 'Text Input',
+                        options: { foreground: true },
+                        textInput: { buttonTitle: 'Send' },
+                    },
+                ],
+            },
+        ]);
+    };
+    setNotificationCategories();
 
     // Quit状態からのメッセージ受信
     useEffect(() => {
@@ -121,9 +178,9 @@ function RootLayoutNav() {
     return (
         <ThemeProvider value={DefaultTheme}>
             <Stack
-                // screenOptions={{
-                //     headerShown: false,
-                // }}
+            // screenOptions={{
+            //     headerShown: false,
+            // }}
             >
 
                 {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}

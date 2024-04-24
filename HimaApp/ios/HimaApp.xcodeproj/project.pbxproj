@@ -16,8 +16,25 @@
 		B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		EB93B33B2BD26DAA00BD93C9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB93B33A2BD26DAA00BD93C9 /* GoogleService-Info.plist */; };
+		EB9B16772BD8165D004B30F9 /* RCTCalendarModule.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9B16762BD8165D004B30F9 /* RCTCalendarModule.m */; };
 		EB9FE9A32BD61ABE00C4F71B /* NotificationService.m in Sources */ = {isa = PBXBuildFile; fileRef = EB9FE9A22BD61ABE00C4F71B /* NotificationService.m */; };
 		EB9FE9A72BD61ABE00C4F71B /* ImageNotification.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EB9FE99F2BD61ABE00C4F71B /* ImageNotification.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EBB21C392BD8258C00BD84D2 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB9B167D2BD818A7004B30F9 /* WidgetKit.framework */; };
+		EBB21C3A2BD8258C00BD84D2 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB9B167F2BD818A7004B30F9 /* SwiftUI.framework */; };
+		EBB21C3D2BD8258C00BD84D2 /* HimaWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB21C3C2BD8258C00BD84D2 /* HimaWidgetBundle.swift */; };
+		EBB21C3F2BD8258C00BD84D2 /* HimaWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB21C3E2BD8258C00BD84D2 /* HimaWidgetLiveActivity.swift */; };
+		EBB21C412BD8258C00BD84D2 /* HimaWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB21C402BD8258C00BD84D2 /* HimaWidget.swift */; };
+		EBB21C432BD8258D00BD84D2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EBB21C422BD8258D00BD84D2 /* Assets.xcassets */; };
+		EBB21C472BD8258D00BD84D2 /* HimaWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EBB21C382BD8258C00BD84D2 /* HimaWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		EBB21C4C2BD8274F00BD84D2 /* HimaWidgetModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB21C4B2BD8274F00BD84D2 /* HimaWidgetModule.swift */; };
+		EBB21C4D2BD8274F00BD84D2 /* HimaWidgetModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB21C4B2BD8274F00BD84D2 /* HimaWidgetModule.swift */; };
+		EBB21C502BD827A900BD84D2 /* HimaWidgetBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = EBB21C4F2BD827A900BD84D2 /* HimaWidgetBridge.m */; };
+		EBC5C5482BD833D00083F496 /* HimaWidgetLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBB21C3E2BD8258C00BD84D2 /* HimaWidgetLiveActivity.swift */; };
+		EBC5C54E2BD842C80083F496 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB93B3282BD25D7000BD93C9 /* UserNotifications.framework */; };
+		EBC5C54F2BD842C80083F496 /* UserNotificationsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB93B32A2BD25D7000BD93C9 /* UserNotificationsUI.framework */; };
+		EBC5C5522BD842C80083F496 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC5C5512BD842C80083F496 /* NotificationViewController.swift */; };
+		EBC5C5552BD842C80083F496 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = EBC5C5542BD842C80083F496 /* Base */; };
+		EBC5C5592BD842C80083F496 /* NotificationService.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = EBC5C54D2BD842C80083F496 /* NotificationService.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +44,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = EB9FE99E2BD61ABE00C4F71B;
 			remoteInfo = ImageNotification;
+		};
+		EBB21C452BD8258D00BD84D2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBB21C372BD8258C00BD84D2;
+			remoteInfo = HimaWidgetExtension;
+		};
+		EBC5C5572BD842C80083F496 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBC5C54C2BD842C80083F496;
+			remoteInfo = NotificationService;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -38,6 +69,8 @@
 			dstSubfolderSpec = 13;
 			files = (
 				EB9FE9A72BD61ABE00C4F71B /* ImageNotification.appex in Embed Foundation Extensions */,
+				EBC5C5592BD842C80083F496 /* NotificationService.appex in Embed Foundation Extensions */,
+				EBB21C472BD8258D00BD84D2 /* HimaWidgetExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -45,6 +78,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0544E0561D332ACD84DEE54B /* Pods-HimaApp-HimaWidgetExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HimaApp-HimaWidgetExtension.debug.xcconfig"; path = "Target Support Files/Pods-HimaApp-HimaWidgetExtension/Pods-HimaApp-HimaWidgetExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* HimaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HimaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = HimaApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = AppDelegate.mm; path = HimaApp/AppDelegate.mm; sourceTree = "<group>"; };
@@ -58,15 +92,33 @@
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = HimaApp/SplashScreen.storyboard; sourceTree = "<group>"; };
 		AB7E439A4FCFCAE1A4D2E930 /* Pods-ImageNotification.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageNotification.release.xcconfig"; path = "Target Support Files/Pods-ImageNotification/Pods-ImageNotification.release.xcconfig"; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
+		C3901DAA2D1A08F1B2A46D82 /* Pods-HimaApp-HimaWidgetExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HimaApp-HimaWidgetExtension.release.xcconfig"; path = "Target Support Files/Pods-HimaApp-HimaWidgetExtension/Pods-HimaApp-HimaWidgetExtension.release.xcconfig"; sourceTree = "<group>"; };
 		C72CBFE98F67038AB7F2A7FD /* Pods-ImageNotification.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ImageNotification.debug.xcconfig"; path = "Target Support Files/Pods-ImageNotification/Pods-ImageNotification.debug.xcconfig"; sourceTree = "<group>"; };
 		EB5F75A72BD243F400F6734B /* HimaApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = HimaApp.entitlements; path = HimaApp/HimaApp.entitlements; sourceTree = "<group>"; };
 		EB93B3282BD25D7000BD93C9 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		EB93B32A2BD25D7000BD93C9 /* UserNotificationsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotificationsUI.framework; path = System/Library/Frameworks/UserNotificationsUI.framework; sourceTree = SDKROOT; };
 		EB93B33A2BD26DAA00BD93C9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EB9B16752BD8161C004B30F9 /* RCTCalendarModule.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RCTCalendarModule.h; sourceTree = "<group>"; };
+		EB9B16762BD8165D004B30F9 /* RCTCalendarModule.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RCTCalendarModule.m; sourceTree = "<group>"; };
+		EB9B167D2BD818A7004B30F9 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		EB9B167F2BD818A7004B30F9 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		EB9FE99F2BD61ABE00C4F71B /* ImageNotification.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ImageNotification.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB9FE9A12BD61ABE00C4F71B /* NotificationService.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationService.h; sourceTree = "<group>"; };
 		EB9FE9A22BD61ABE00C4F71B /* NotificationService.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationService.m; sourceTree = "<group>"; };
 		EB9FE9A42BD61ABE00C4F71B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBB21C382BD8258C00BD84D2 /* HimaWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = HimaWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBB21C3C2BD8258C00BD84D2 /* HimaWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HimaWidgetBundle.swift; sourceTree = "<group>"; };
+		EBB21C3E2BD8258C00BD84D2 /* HimaWidgetLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HimaWidgetLiveActivity.swift; sourceTree = "<group>"; };
+		EBB21C402BD8258C00BD84D2 /* HimaWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HimaWidget.swift; sourceTree = "<group>"; };
+		EBB21C422BD8258D00BD84D2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		EBB21C442BD8258D00BD84D2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBB21C4B2BD8274F00BD84D2 /* HimaWidgetModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HimaWidgetModule.swift; sourceTree = "<group>"; };
+		EBB21C4E2BD827A800BD84D2 /* HimaApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "HimaApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		EBB21C4F2BD827A900BD84D2 /* HimaWidgetBridge.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HimaWidgetBridge.m; sourceTree = "<group>"; };
+		EBC5C54D2BD842C80083F496 /* NotificationService.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationService.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBC5C5512BD842C80083F496 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		EBC5C5542BD842C80083F496 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		EBC5C5562BD842C80083F496 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		FAC715A2D49A985799AEE119 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-HimaApp/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -85,6 +137,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				67133D0A0BEEFC4BE8B27F8F /* Pods_ImageNotification.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB21C352BD8258C00BD84D2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB21C3A2BD8258C00BD84D2 /* SwiftUI.framework in Frameworks */,
+				EBB21C392BD8258C00BD84D2 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBC5C54A2BD842C80083F496 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBC5C54F2BD842C80083F496 /* UserNotificationsUI.framework in Frameworks */,
+				EBC5C54E2BD842C80083F496 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +185,8 @@
 				EB93B32A2BD25D7000BD93C9 /* UserNotificationsUI.framework */,
 				6EAFAA27C50875109CAD2FCC /* Pods_HimaApp.framework */,
 				4FE6C4DBB39C44D1916B38C3 /* Pods_ImageNotification.framework */,
+				EB9B167D2BD818A7004B30F9 /* WidgetKit.framework */,
+				EB9B167F2BD818A7004B30F9 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -129,9 +201,13 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				EB9B16752BD8161C004B30F9 /* RCTCalendarModule.h */,
+				EB9B16762BD8165D004B30F9 /* RCTCalendarModule.m */,
 				13B07FAE1A68108700A75B9A /* HimaApp */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				EB9FE9A02BD61ABE00C4F71B /* ImageNotification */,
+				EBB21C3B2BD8258C00BD84D2 /* HimaWidget */,
+				EBC5C5502BD842C80083F496 /* NotificationService */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				D65327D7A22EEC0BE12398D9 /* Pods */,
@@ -147,6 +223,8 @@
 			children = (
 				13B07F961A680F5B00A75B9A /* HimaApp.app */,
 				EB9FE99F2BD61ABE00C4F71B /* ImageNotification.appex */,
+				EBB21C382BD8258C00BD84D2 /* HimaWidgetExtension.appex */,
+				EBC5C54D2BD842C80083F496 /* NotificationService.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -175,6 +253,8 @@
 				7A4D352CD337FB3A3BF06240 /* Pods-HimaApp.release.xcconfig */,
 				C72CBFE98F67038AB7F2A7FD /* Pods-ImageNotification.debug.xcconfig */,
 				AB7E439A4FCFCAE1A4D2E930 /* Pods-ImageNotification.release.xcconfig */,
+				0544E0561D332ACD84DEE54B /* Pods-HimaApp-HimaWidgetExtension.debug.xcconfig */,
+				C3901DAA2D1A08F1B2A46D82 /* Pods-HimaApp-HimaWidgetExtension.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -195,6 +275,31 @@
 				EB9FE9A42BD61ABE00C4F71B /* Info.plist */,
 			);
 			path = ImageNotification;
+			sourceTree = "<group>";
+		};
+		EBB21C3B2BD8258C00BD84D2 /* HimaWidget */ = {
+			isa = PBXGroup;
+			children = (
+				EBB21C3C2BD8258C00BD84D2 /* HimaWidgetBundle.swift */,
+				EBB21C3E2BD8258C00BD84D2 /* HimaWidgetLiveActivity.swift */,
+				EBB21C402BD8258C00BD84D2 /* HimaWidget.swift */,
+				EBB21C422BD8258D00BD84D2 /* Assets.xcassets */,
+				EBB21C4B2BD8274F00BD84D2 /* HimaWidgetModule.swift */,
+				EBB21C4F2BD827A900BD84D2 /* HimaWidgetBridge.m */,
+				EBB21C442BD8258D00BD84D2 /* Info.plist */,
+				EBB21C4E2BD827A800BD84D2 /* HimaApp-Bridging-Header.h */,
+			);
+			path = HimaWidget;
+			sourceTree = "<group>";
+		};
+		EBC5C5502BD842C80083F496 /* NotificationService */ = {
+			isa = PBXGroup;
+			children = (
+				EBC5C5512BD842C80083F496 /* NotificationViewController.swift */,
+				EBC5C5532BD842C80083F496 /* MainInterface.storyboard */,
+				EBC5C5562BD842C80083F496 /* Info.plist */,
+			);
+			path = NotificationService;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -219,6 +324,8 @@
 			);
 			dependencies = (
 				EB9FE9A62BD61ABE00C4F71B /* PBXTargetDependency */,
+				EBB21C462BD8258D00BD84D2 /* PBXTargetDependency */,
+				EBC5C5582BD842C80083F496 /* PBXTargetDependency */,
 			);
 			name = HimaApp;
 			productName = HimaApp;
@@ -244,6 +351,40 @@
 			productReference = EB9FE99F2BD61ABE00C4F71B /* ImageNotification.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		EBB21C372BD8258C00BD84D2 /* HimaWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBB21C482BD8258D00BD84D2 /* Build configuration list for PBXNativeTarget "HimaWidgetExtension" */;
+			buildPhases = (
+				EBB21C342BD8258C00BD84D2 /* Sources */,
+				EBB21C352BD8258C00BD84D2 /* Frameworks */,
+				EBB21C362BD8258C00BD84D2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HimaWidgetExtension;
+			productName = HimaWidgetExtension;
+			productReference = EBB21C382BD8258C00BD84D2 /* HimaWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		EBC5C54C2BD842C80083F496 /* NotificationService */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EBC5C55A2BD842C80083F496 /* Build configuration list for PBXNativeTarget "NotificationService" */;
+			buildPhases = (
+				EBC5C5492BD842C80083F496 /* Sources */,
+				EBC5C54A2BD842C80083F496 /* Frameworks */,
+				EBC5C54B2BD842C80083F496 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationService;
+			productName = NotificationService;
+			productReference = EBC5C54D2BD842C80083F496 /* NotificationService.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -257,6 +398,13 @@
 						LastSwiftMigration = 1250;
 					};
 					EB9FE99E2BD61ABE00C4F71B = {
+						CreatedOnToolsVersion = 15.3;
+					};
+					EBB21C372BD8258C00BD84D2 = {
+						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
+					};
+					EBC5C54C2BD842C80083F496 = {
 						CreatedOnToolsVersion = 15.3;
 					};
 				};
@@ -276,6 +424,8 @@
 			targets = (
 				13B07F861A680F5B00A75B9A /* HimaApp */,
 				EB9FE99E2BD61ABE00C4F71B /* ImageNotification */,
+				EBB21C372BD8258C00BD84D2 /* HimaWidgetExtension */,
+				EBC5C54C2BD842C80083F496 /* NotificationService */,
 			);
 		};
 /* End PBXProject section */
@@ -296,6 +446,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBB21C362BD8258C00BD84D2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB21C432BD8258D00BD84D2 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBC5C54B2BD842C80083F496 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBC5C5552BD842C80083F496 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,9 +658,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EBB21C502BD827A900BD84D2 /* HimaWidgetBridge.m in Sources */,
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				EBC5C5482BD833D00083F496 /* HimaWidgetLiveActivity.swift in Sources */,
 				B18059E884C0ABDD17F3DC3D /* ExpoModulesProvider.swift in Sources */,
+				EBB21C4C2BD8274F00BD84D2 /* HimaWidgetModule.swift in Sources */,
+				EB9B16772BD8165D004B30F9 /* RCTCalendarModule.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -506,6 +676,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EBB21C342BD8258C00BD84D2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBB21C3D2BD8258C00BD84D2 /* HimaWidgetBundle.swift in Sources */,
+				EBB21C412BD8258C00BD84D2 /* HimaWidget.swift in Sources */,
+				EBB21C4D2BD8274F00BD84D2 /* HimaWidgetModule.swift in Sources */,
+				EBB21C3F2BD8258C00BD84D2 /* HimaWidgetLiveActivity.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EBC5C5492BD842C80083F496 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EBC5C5522BD842C80083F496 /* NotificationViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -514,7 +703,28 @@
 			target = EB9FE99E2BD61ABE00C4F71B /* ImageNotification */;
 			targetProxy = EB9FE9A52BD61ABE00C4F71B /* PBXContainerItemProxy */;
 		};
+		EBB21C462BD8258D00BD84D2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBB21C372BD8258C00BD84D2 /* HimaWidgetExtension */;
+			targetProxy = EBB21C452BD8258D00BD84D2 /* PBXContainerItemProxy */;
+		};
+		EBC5C5582BD842C80083F496 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBC5C54C2BD842C80083F496 /* NotificationService */;
+			targetProxy = EBC5C5572BD842C80083F496 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		EBC5C5532BD842C80083F496 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				EBC5C5542BD842C80083F496 /* Base */,
+			);
+			name = MainInterface.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
@@ -533,7 +743,7 @@
 					"FB_SONARKIT_ENABLED=1",
 				);
 				INFOPLIST_FILE = HimaApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -547,6 +757,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.giftech.team-a";
 				PRODUCT_NAME = HimaApp;
+				SWIFT_OBJC_BRIDGING_HEADER = "HimaWidget/HimaApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -564,7 +775,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = D7LU56ZQAQ;
 				INFOPLIST_FILE = HimaApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -578,6 +789,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.giftech.team-a";
 				PRODUCT_NAME = HimaApp;
+				SWIFT_OBJC_BRIDGING_HEADER = "HimaWidget/HimaApp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -642,7 +854,7 @@
 					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
 					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -711,7 +923,7 @@
 					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers",
 					"${PODS_CONFIGURATION_BUILD_DIR}/React-graphics/React_graphics.framework/Headers/react/renderer/graphics/platform/ios",
 				);
-				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					/usr/lib/swift,
 					"$(inherited)",
@@ -810,6 +1022,182 @@
 			};
 			name = Release;
 		};
+		EBB21C492BD8258D00BD84D2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = D7LU56ZQAQ;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HimaWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HimaWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.giftech.team-a.HimaWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EBB21C4A2BD8258D00BD84D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = D7LU56ZQAQ;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = HimaWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = HimaWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.giftech.team-a.HimaWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EBC5C55B2BD842C80083F496 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = D7LU56ZQAQ;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.giftech.team-a.NotificationService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		EBC5C55C2BD842C80083F496 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = D7LU56ZQAQ;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = NotificationService/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = NotificationService;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MARKETING_VERSION = 1.0;
+				MTL_FAST_MATH = YES;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.giftech.team-a.NotificationService";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -836,6 +1224,24 @@
 			buildConfigurations = (
 				EB9FE9A82BD61ABE00C4F71B /* Debug */,
 				EB9FE9A92BD61ABE00C4F71B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBB21C482BD8258D00BD84D2 /* Build configuration list for PBXNativeTarget "HimaWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBB21C492BD8258D00BD84D2 /* Debug */,
+				EBB21C4A2BD8258D00BD84D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EBC5C55A2BD842C80083F496 /* Build configuration list for PBXNativeTarget "NotificationService" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EBC5C55B2BD842C80083F496 /* Debug */,
+				EBC5C55C2BD842C80083F496 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

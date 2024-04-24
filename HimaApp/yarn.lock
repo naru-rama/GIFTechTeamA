@@ -2244,6 +2244,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@notifee/react-native@^7.8.2":
+  version "7.8.2"
+  resolved "https://registry.yarnpkg.com/@notifee/react-native/-/react-native-7.8.2.tgz#72d3199ae830b4128ddaef3c1c2f11604759c9c4"
+  integrity sha512-VG4IkWJIlOKqXwa3aExC3WFCVCGCC9BA55Ivg0SMRfEs+ruvYy/zlLANcrVGiPtgkUEryXDhA8SXx9+JcO8oLA==
+
 "@npmcli/agent@^2.0.0":
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/@npmcli/agent/-/agent-2.2.2.tgz#967604918e62f620a648c7975461c9c9e74fc5d5"
@@ -5061,7 +5066,7 @@ expo-linking@~6.2.2:
     expo-constants "~15.4.3"
     invariant "^2.2.4"
 
-expo-modules-autolinking@1.10.3:
+expo-modules-autolinking@1.10.3, expo-modules-autolinking@^1.10.3:
   version "1.10.3"
   resolved "https://registry.yarnpkg.com/expo-modules-autolinking/-/expo-modules-autolinking-1.10.3.tgz#19f349884a90f3f27ec9d64e8f2fa6be609558c5"
   integrity sha512-pn4n2Dl4iRh/zUeiChjRIe1C7EqOw1qhccr85viQV7W6l5vgRpY0osE51ij5LKg/kJmGRcJfs12+PwbdTplbKw==

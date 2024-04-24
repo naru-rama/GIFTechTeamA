@@ -8,12 +8,33 @@ import Constants from 'expo-constants';
 import { Link } from 'expo-router';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Footer from '../components/Footer';
+import { NativeModules } from 'react-native';
 
 
 
 export default function Home() {
   const addData = async () => {
     console.log("Adding data");
+  }
+  const {HimaWidgetModule} = NativeModules;
+  const NewModuleButton = () => {
+    const onPress = () => {
+      console.log('We will invoke the native module here!');
+      console.log(NativeModules.HimaWidgetModule);
+      HimaWidgetModule.startLiveActivity();
+    };
+  
+    return (
+      <Button
+        title="Click to invoke your native module!"
+        color="#841584"
+        onPress={onPress}
+      />
+    );
+  };
+  const finishButton = () => {
+    console.log("finishButton");
+    HimaWidgetModule.stopLiveActivity();
   }
 
   return (
@@ -24,6 +45,10 @@ export default function Home() {
       <View style={styles.buttonWrap}>
         <Button title="データ追加" onPress={addData} />
       </View>
+      <View style={styles.buttonWrap}>
+        <Button title="終了" onPress={finishButton} />
+      </View>
+      <NewModuleButton />
 
       {/* ここからフッター */}
       <View

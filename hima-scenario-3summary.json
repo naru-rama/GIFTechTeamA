@@ -17,14 +17,14 @@
                "body": "通知に答えるだけで、一週間の暇データ計測中🤖ピガー。ヒマな曜日🗓️、暇な時間帯🕰️、暇レベル📊、収集チュウ...🤖ガガ..ピッー。️️"
              },
              "mutable-content":1,
-             "category": "robot-alert"
+             "category": "summary"
            }
          },
          "fcm_options": {
          }
        },
        "data": {
-           "type": "robot-alert"
+           "type": "summary"
          },
        "webpush":{
          "headers":{

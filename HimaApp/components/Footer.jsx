@@ -33,6 +33,13 @@ const Footer = () => {
                     {/* <Image source={require('./path-to-your-icon2.png')} style={styles.icon} /> */}
                 </TouchableOpacity>
             </Link>
+            <Link href="notifee" asChild>
+                <TouchableOpacity style={styles.button}>
+                    <Text style={styles.emoji}>💬</Text>
+                    <Text style={styles.text}>通知設定</Text>
+                    {/* <Image source={require('./path-to-your-icon2.png')} style={styles.icon} /> */}
+                </TouchableOpacity>
+            </Link>
         </View>
     );
 };

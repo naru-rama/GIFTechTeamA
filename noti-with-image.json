@@ -1,0 +1,30 @@
+{
+    "message": {
+      "token": "d1fhMTunWEGyiVhVtMc1al:APA91bF42YdE-ytcPKdGrbKFz9jsHH7x_arZHhlF8LRaAlBXUNMNGhnJBRg4rxTbW2MkzStTudSHE5aJO6EvzTzy8BElUtw7X8lvWSYwyyC1wamgbKKMbSqR9KSdYkoDMlxgz4QlAfeU",
+      "notification":{
+         "title": "Sparky says hello!"
+       },
+       "android":{
+         "notification":{
+           "image":"https://chichibu-prod-bucket.s3.ap-northeast-1.amazonaws.com/images/chichibu/home-page/disaster-prevention.png"
+         }
+       },
+       "apns":{
+         "payload":{
+           "aps":{
+             "alert": "アラート",
+             "mutable-content":1,
+             "category": "userAction"
+           }
+         },
+         "fcm_options": {
+             "image":"https://chichibu-prod-bucket.s3.ap-northeast-1.amazonaws.com/images/chichibu/home-page/disaster-prevention.png"
+         }
+       },
+       "webpush":{
+         "headers":{
+           "image":"https://chichibu-prod-bucket.s3.ap-northeast-1.amazonaws.com/images/chichibu/home-page/disaster-prevention.png"
+         }
+       }
+    }
+  }

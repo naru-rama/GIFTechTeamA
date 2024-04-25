@@ -1,21 +1,24 @@
-import { collection, getDocs, addDoc, updateDoc, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc, doc, getDoc, query, orderBy } from "firebase/firestore";
 import db from "../utils/firebase";
 
-// himaActions.js または適切な場所に配置
 export const getAllHimaItems = async () => {
     console.log("Getting data from himaItem actions");
-    const snap = await getDocs(collection(db, "himaItems"));
+
+    const himaItemsQuery = query(collection(db, "himaItems"), orderBy("updatedAt", "asc"));
+
+    const snap = await getDocs(himaItemsQuery);
     const items = [];
     snap.forEach((doc) => {
         items.push({
             id: doc.id,
             name: doc.data().name,
-            doneCount: doc.data().doneCount
+            doneCount: doc.data().doneCount,
+            updatedAt: doc.data().updatedAt,
+            uuid: doc.data().id
         });
     });
     return items;
 };
-
 
 export const addHimaItem = async (name) => {
     console.log("Adding data from hima actions");

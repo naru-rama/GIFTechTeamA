@@ -5,7 +5,6 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { addHimaItem, getAllHimaItems } from '../actions/HimaActions';
-import { Picker } from '@react-native-picker/picker';
 
 export default function himaIndex() {
     const [inputText, setInputText] = useState('');
@@ -59,9 +58,26 @@ export default function himaIndex() {
         } else {
             return '#FFFFFF';
         }
-
-        return count >= 10 ? 'red' : 'white';
     };
+
+    const renderItem = ({ item }) => {
+        const isSelected = selectedItem && (selectedItem.id === item.id);
+    
+        return (
+            <TouchableOpacity
+                onPress={() => setSelectedItem(item)}
+                style={styles.item}
+            >
+                <Text style={[
+                    styles.itemText,
+                    { color: isSelected ? getColorByCount(item.doneCount) : '#F2D0FF' }
+                ]}>
+                    {item.name}
+                </Text>
+            </TouchableOpacity>
+        );
+    };
+    
 
     return (
         <KeyboardAvoidingView
@@ -105,53 +121,52 @@ export default function himaIndex() {
                 </View>
             </View>
 
-            <View style={styles.inner}>
-                <Picker
-                    selectedValue={selectedItem}
-                    style={styles.picker}
-                    onValueChange={(itemValue, itemIndex) => setSelectedItem(itemValue)}
+            <FlatList
+                data={himaItems}
+                renderItem={renderItem}
+                keyExtractor={(item, index) => index.toString()}
+                style={styles.list}
+            />
+            <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+            <View style={styles.inputContainer}>
+                <TextInput
+                    style={[
+                        styles.input,
+                        isFocused ? { backgroundColor: '#FFFFFF', color: '#1E64B8' } : {}
+                    ]}
+                    placeholder="テキストを入力してください"
+                    placeholderTextColor="#78A3D5"
+                    onFocus={handleInputFocus}
+                    onBlur={handleInputBlur}
+                    onChangeText={setInputText}
+                    value={inputText}
+                    fontSize={16}
+                    returnKeyType="done"
+                />
+                <TouchableOpacity
+                    style={[
+                        styles.button,
+                        isFocused ? { backgroundColor: '#F2D0FF' } : {}
+                    ]}
+                    onPress={handleButtonPress}
                 >
-                    {himaItems.map((item, index) => (
-                        <Picker.Item key={index} label={item.name} value={item.name} color={getColorByCount(item.doneCount)} fontSize={30}/>
-                    ))}
-                </Picker>
-                <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-                <View style={styles.inputContainer}>
-                    <TextInput
-                        style={[
-                            styles.input,
-                            isFocused ? { backgroundColor: '#FFFFFF', color: '#1E64B8' } : {}
-                        ]}
-                        placeholder="テキストを入力してください"
-                        placeholderTextColor="#78A3D5"
-                        onFocus={handleInputFocus}
-                        onBlur={handleInputBlur}
-                        onChangeText={setInputText}
-                        value={inputText}
-                        fontSize={16}
-                        returnKeyType="done"
-                    />
-                    <TouchableOpacity
-                        style={[
-                            styles.button,
-                            isFocused ? { backgroundColor: '#F2D0FF' } : {}
-                        ]}
-                        onPress={handleButtonPress}
-                    >
-                        <Text style={[
-                            styles.buttonText,
-                            isFocused ? { color: '#1E64B8' } : { color: '#78A3D5' }
-                        ]}>
-                            OK
-                        </Text>
-                    </TouchableOpacity>
-                </View>
+                    <Text style={[
+                        styles.buttonText,
+                        isFocused ? { color: '#1E64B8' } : { color: '#78A3D5' }
+                    ]}>
+                        OK
+                    </Text>
+                </TouchableOpacity>
             </View>
         </KeyboardAvoidingView>
     );
 }
 
 const styles = StyleSheet.create({
+    list: {
+        top: -60,
+        height: 300, // FlatList の高さを 300px に設定
+    },
     fullScreenContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -287,5 +302,16 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingLeft: 12,
         paddingRight: 12,
+    },
+    item: {
+        padding: 30,
+        marginVertical: 8,
+        marginHorizontal: 16,
+        borderRadius: 10,
+    },
+    itemText: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        textAlign: 'center',
     },
 });

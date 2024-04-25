@@ -13,31 +13,14 @@ export default function himaIndex() {
     const [isFocused, setIsFocused] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const navigation = useNavigation();
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchHimaItems = async () => {
             const items = await getAllHimaItems();
-            setHimaItems(repeatItems(items, 10));
+            setHimaItems(items);
         };
         fetchHimaItems();
     }, []);
-    
-    const repeatItems = (items, count) => {
-        let repeatedItems = [];
-        for (let i = 0; i < count; i++) {
-            repeatedItems = repeatedItems.concat(items.map(item => ({ ...item, id: `${item.id}-${i}` })));
-        }
-        return repeatedItems;
-    };
-
-    const handleEndReached = () => {
-        if (!loading) {
-            setLoading(true);
-            setHimaItems(prevItems => [...prevItems, ...repeatItems(prevItems.slice(0, prevItems.length / 10), 1)]);
-            setLoading(false);
-        }
-    };
 
     const handleInputFocus = () => setIsFocused(true);
     const handleInputBlur = () => setIsFocused(false);
@@ -53,8 +36,7 @@ export default function himaIndex() {
         if (inputText.trim()) {
             await addHimaItem(inputText.trim());
             const items = await getAllHimaItems();
-            // アイテムを10回繰り返して更新
-            setHimaItems(repeatItems(items, 10));
+            setHimaItems(items);
             setShowConfirmation(true);
         }
         clearInput();
@@ -141,7 +123,7 @@ export default function himaIndex() {
                 />
                 <View style={styles.registrationCountContainer}>
                     <Text style={styles.registrationLabelText}>登録数</Text>
-                    <Text style={styles.registrationCountText}>{himaItems.length / 10}</Text>
+                    <Text style={styles.registrationCountText}>{himaItems.length}</Text>
                 </View>
             </View>
 
@@ -151,7 +133,7 @@ export default function himaIndex() {
                     renderItem={renderItem}
                     keyExtractor={(item, index) => index.toString()}
                     style={styles.list}
-                    onScroll={handleScroll}
+                    onScroll={handleScroll} 
                 />
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                 <View style={styles.inputContainer}>
@@ -192,7 +174,7 @@ export default function himaIndex() {
 const styles = StyleSheet.create({
     list: {
         top: -60,
-        height: 300, // FlatList の高さを 300px に設定
+        height: 300,
     },
     fullScreenContainer: {
         flex: 1,
@@ -270,7 +252,6 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         paddingHorizontal: 12,
-        zIndex: 1,
     },
     input: {
         height: 40,

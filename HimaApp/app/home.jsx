@@ -8,12 +8,47 @@ import Constants from 'expo-constants';
 import { Link } from 'expo-router';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Footer from '../components/Footer';
-
+import { NativeModules } from 'react-native';
+import Notifee from './notifee';
+import Modal from "react-native-modal";
+import CompletedModal from '../components/CompletedModal';
+import { useLocalSearchParams } from 'expo-router';
 
 
 export default function Home() {
+  const { isCompletedModalVisible } = useLocalSearchParams();
+  console.log(isCompletedModalVisible);
+  const [isModalVisible, setModalVisible] = useState(isCompletedModalVisible ?? false);
+  useEffect(() => {
+    console.log("isCompletedModalVisible", isCompletedModalVisible);
+    setModalVisible(isCompletedModalVisible == 'true');
+  }, [isCompletedModalVisible]);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
+  };
   const addData = async () => {
     console.log("Adding data");
+  }
+  const {HimaWidgetModule} = NativeModules;
+  const NewModuleButton = () => {
+    const onPress = () => {
+      console.log('We will invoke the native module here!');
+      console.log(NativeModules.HimaWidgetModule);
+      HimaWidgetModule.startLiveActivity();
+    };
+  
+    return (
+      <Button
+        title="Click to invoke your native module!"
+        color="#841584"
+        onPress={onPress}
+      />
+    );
+  };
+  const finishButton = () => {
+    console.log("finishButton");
+    HimaWidgetModule.stopLiveActivity();
   }
 
   return (
@@ -22,8 +57,14 @@ export default function Home() {
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
       <View style={styles.buttonWrap}>
-        <Button title="データ追加" onPress={addData} />
+        <Button title="データ追加a" onPress={addData} />
       </View>
+      <View style={styles.buttonWrap}>
+        <Button title="終了" onPress={finishButton} />
+      </View>
+      <NewModuleButton />
+      <Notifee />
+      <Button title="Show modal" onPress={toggleModal} />
 
       {/* ここからフッター */}
       <View
@@ -36,6 +77,7 @@ export default function Home() {
         {Footer()}
       </View>
       {/* ここまでフッター */}
+      <CompletedModal isVisible={isModalVisible} onClose={toggleModal} />
     </View>
   );
 }

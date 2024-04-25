@@ -1,0 +1,41 @@
+// HimaWidgetModule.swift
+
+import Foundation
+import ActivityKit
+
+@objc(HimaWidgetModule)
+class HimaWidgetModule: NSObject {
+
+  private func areActivitiesEnabled() -> Bool {
+    return ActivityAuthorizationInfo().areActivitiesEnabled
+  }
+
+  @objc
+  func startLiveActivity() -> Void {
+    if (!areActivitiesEnabled()) {
+      // User disabled Live Activities for the app, nothing to do
+      return
+    }
+    // Preparing data for the Live Activity
+    let activityAttributes = HimaWidgetAttributes()
+    let contentState = HimaWidgetAttributes.ContentState(startedAt: Date())
+    let activityContent = ActivityContent(state: contentState,  staleDate: nil)
+    do {
+      // Request to start a new Live Activity with the content defined above
+      try Activity.request(attributes: activityAttributes, content: activityContent)
+    } catch {
+      // Handle errors, skipped for simplicity
+    }
+  }
+
+  @objc
+  func stopLiveActivity() -> Void {
+    // A task is a unit of work that can run concurrently in a lightweight thread, managed by the Swift runtime
+    // It helps to avoid blocking the main thread
+    Task {
+      for activity in Activity<HimaWidgetAttributes>.activities {
+        await activity.end(nil, dismissalPolicy: .immediate)
+      }
+    }
+  }
+}

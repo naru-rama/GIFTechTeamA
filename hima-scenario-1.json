@@ -1,0 +1,35 @@
+{
+    "message": {
+      "token": "d1fhMTunWEGyiVhVtMc1al:APA91bF42YdE-ytcPKdGrbKFz9jsHH7x_arZHhlF8LRaAlBXUNMNGhnJBRg4rxTbW2MkzStTudSHE5aJO6EvzTzy8BElUtw7X8lvWSYwyyC1wamgbKKMbSqR9KSdYkoDMlxgz4QlAfeU",
+      "notification":{
+         "title": "今ヒマ〜？"
+       },
+       "android":{
+         "notification":{
+           "image":"https://chichibu-prod-bucket.s3.ap-northeast-1.amazonaws.com/images/chichibu/home-page/disaster-prevention.png"
+         }
+       },
+       "apns":{
+         "payload":{
+           "aps":{
+             "alert": {
+               "title": "🥱ヒマからのお便り🥱",
+               "body": "ヤッホー🗻今暇な気がしたんだけど...どう？せっかくだしヒマしよ☕。長押しするとボタンが出てくるから、今の気分で答えてね。️️"
+             },
+             "mutable-content":1,
+             "category": "are-you-free"
+           }
+         },
+         "fcm_options": {
+         }
+       },
+       "data": {
+           "type": "are-you-free"
+         },
+       "webpush":{
+         "headers":{
+           "image":"https://chichibu-prod-bucket.s3.ap-northeast-1.amazonaws.com/images/chichibu/home-page/disaster-prevention.png"
+         }
+       }
+    }
+  }

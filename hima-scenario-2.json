@@ -1,0 +1,35 @@
+{
+    "message": {
+      "token": "d1fhMTunWEGyiVhVtMc1al:APA91bF42YdE-ytcPKdGrbKFz9jsHH7x_arZHhlF8LRaAlBXUNMNGhnJBRg4rxTbW2MkzStTudSHE5aJO6EvzTzy8BElUtw7X8lvWSYwyyC1wamgbKKMbSqR9KSdYkoDMlxgz4QlAfeU",
+      "notification":{
+         "title": "今ヒマ〜？"
+       },
+       "android":{
+         "notification":{
+           "image":"https://chichibu-prod-bucket.s3.ap-northeast-1.amazonaws.com/images/chichibu/home-page/disaster-prevention.png"
+         }
+       },
+       "apns":{
+         "payload":{
+           "aps":{
+             "alert": {
+               "title": "🥱不急速報、ヒマ通知🥱",
+               "body": "通知に答えるだけで、一週間の暇データ計測中🤖ピガー。ヒマな曜日🗓️、暇な時間帯🕰️、暇レベル📊、収集チュウ...🤖ガガ..ピッー。️️"
+             },
+             "mutable-content":1,
+             "category": "robot-alert"
+           }
+         },
+         "fcm_options": {
+         }
+       },
+       "data": {
+           "type": "robot-alert"
+         },
+       "webpush":{
+         "headers":{
+           "image":"https://chichibu-prod-bucket.s3.ap-northeast-1.amazonaws.com/images/chichibu/home-page/disaster-prevention.png"
+         }
+       }
+    }
+  }

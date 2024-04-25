@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Platform,
     TouchableOpacity, Keyboard, Image, Modal, FlatList
@@ -13,6 +13,7 @@ export default function himaIndex() {
     const [isFocused, setIsFocused] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const navigation = useNavigation();
+    const flatListRef = useRef();
 
     useEffect(() => {
         const fetchHimaItems = async () => {
@@ -21,6 +22,12 @@ export default function himaIndex() {
         };
         fetchHimaItems();
     }, []);
+
+    useEffect(() => {
+        if (!showConfirmation && himaItems.length > 0 && flatListRef.current) {
+            flatListRef.current.scrollToEnd({ animated: true });
+        }
+    }, [showConfirmation]);
 
     const handleInputFocus = () => setIsFocused(true);
     const handleInputBlur = () => setIsFocused(false);
@@ -129,11 +136,12 @@ export default function himaIndex() {
 
             <View style={styles.inner}>
                 <FlatList
+                    ref={flatListRef}
                     data={himaItems}
                     renderItem={renderItem}
                     keyExtractor={(item, index) => index.toString()}
                     style={styles.list}
-                    onScroll={handleScroll} 
+                    onScroll={handleScroll}
                 />
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                 <View style={styles.inputContainer}>

@@ -13,14 +13,31 @@ export default function himaIndex() {
     const [isFocused, setIsFocused] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const navigation = useNavigation();
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const fetchHimaItems = async () => {
             const items = await getAllHimaItems();
-            setHimaItems(items);
+            setHimaItems(repeatItems(items, 10));
         };
         fetchHimaItems();
     }, []);
+    
+    const repeatItems = (items, count) => {
+        let repeatedItems = [];
+        for (let i = 0; i < count; i++) {
+            repeatedItems = repeatedItems.concat(items.map(item => ({ ...item, id: `${item.id}-${i}` })));
+        }
+        return repeatedItems;
+    };
+
+    const handleEndReached = () => {
+        if (!loading) {
+            setLoading(true);
+            setHimaItems(prevItems => [...prevItems, ...repeatItems(prevItems.slice(0, prevItems.length / 10), 1)]);
+            setLoading(false);
+        }
+    };
 
     const handleInputFocus = () => setIsFocused(true);
     const handleInputBlur = () => setIsFocused(false);
@@ -36,7 +53,8 @@ export default function himaIndex() {
         if (inputText.trim()) {
             await addHimaItem(inputText.trim());
             const items = await getAllHimaItems();
-            setHimaItems(items);
+            // アイテムを10回繰り返して更新
+            setHimaItems(repeatItems(items, 10));
             setShowConfirmation(true);
         }
         clearInput();
@@ -62,7 +80,7 @@ export default function himaIndex() {
 
     const renderItem = ({ item }) => {
         const isSelected = selectedItem && (selectedItem.id === item.id);
-    
+
         return (
             <TouchableOpacity
                 onPress={() => setSelectedItem(item)}
@@ -74,10 +92,16 @@ export default function himaIndex() {
                 ]}>
                     {item.name}
                 </Text>
+                {isSelected && (
+                    <Text style={styles.itemTextSub}>タップされたよ</Text>
+                )}
             </TouchableOpacity>
         );
     };
     
+    const handleScroll = () => {
+        setSelectedItem(null);
+    };
 
     return (
         <KeyboardAvoidingView
@@ -117,46 +141,49 @@ export default function himaIndex() {
                 />
                 <View style={styles.registrationCountContainer}>
                     <Text style={styles.registrationLabelText}>登録数</Text>
-                    <Text style={styles.registrationCountText}>{himaItems.length}</Text>
+                    <Text style={styles.registrationCountText}>{himaItems.length / 10}</Text>
                 </View>
             </View>
 
-            <FlatList
-                data={himaItems}
-                renderItem={renderItem}
-                keyExtractor={(item, index) => index.toString()}
-                style={styles.list}
-            />
-            <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-            <View style={styles.inputContainer}>
-                <TextInput
-                    style={[
-                        styles.input,
-                        isFocused ? { backgroundColor: '#FFFFFF', color: '#1E64B8' } : {}
-                    ]}
-                    placeholder="テキストを入力してください"
-                    placeholderTextColor="#78A3D5"
-                    onFocus={handleInputFocus}
-                    onBlur={handleInputBlur}
-                    onChangeText={setInputText}
-                    value={inputText}
-                    fontSize={16}
-                    returnKeyType="done"
+            <View style={styles.inner}>
+                <FlatList
+                    data={himaItems}
+                    renderItem={renderItem}
+                    keyExtractor={(item, index) => index.toString()}
+                    style={styles.list}
+                    onScroll={handleScroll}
                 />
-                <TouchableOpacity
-                    style={[
-                        styles.button,
-                        isFocused ? { backgroundColor: '#F2D0FF' } : {}
-                    ]}
-                    onPress={handleButtonPress}
-                >
-                    <Text style={[
-                        styles.buttonText,
-                        isFocused ? { color: '#1E64B8' } : { color: '#78A3D5' }
-                    ]}>
-                        OK
-                    </Text>
-                </TouchableOpacity>
+                <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
+                <View style={styles.inputContainer}>
+                    <TextInput
+                        style={[
+                            styles.input,
+                            isFocused ? { backgroundColor: '#FFFFFF', color: '#1E64B8' } : {}
+                        ]}
+                        placeholder="テキストを入力してください"
+                        placeholderTextColor="#78A3D5"
+                        onFocus={handleInputFocus}
+                        onBlur={handleInputBlur}
+                        onChangeText={setInputText}
+                        value={inputText}
+                        fontSize={16}
+                        returnKeyType="done"
+                    />
+                    <TouchableOpacity
+                        style={[
+                            styles.button,
+                            isFocused ? { backgroundColor: '#F2D0FF' } : {}
+                        ]}
+                        onPress={handleButtonPress}
+                    >
+                        <Text style={[
+                            styles.buttonText,
+                            isFocused ? { color: '#1E64B8' } : { color: '#78A3D5' }
+                        ]}>
+                            OK
+                        </Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </KeyboardAvoidingView>
     );
@@ -243,6 +270,7 @@ const styles = StyleSheet.create({
         position: 'absolute',
         bottom: 0,
         paddingHorizontal: 12,
+        zIndex: 1,
     },
     input: {
         height: 40,
@@ -313,5 +341,11 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         textAlign: 'center',
+    },
+    itemTextSub: {
+        fontSize: 20,
+        color: 'white',
+        textAlign: 'center',
+        marginTop: 10
     },
 });

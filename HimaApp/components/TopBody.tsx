@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Animated } from 'react-native';
+import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Animated, Image } from 'react-native';
 import AddHimaModal from './AddHimaModal';
 import { getAllHimaItems } from '../actions/HimaActions';
 import { useRouter } from 'expo-router';
@@ -168,9 +168,16 @@ const TopBody = ({ }) => {
             <TouchableOpacity style={styles.fab} onPress={() => {
                 setIsModalVisible(true);
             }}>
-                <Text style={styles.fabText}>＋</Text>
+                {/* <Text style={styles.fabText}>＋</Text> */}
+                <Image
+                    source={require('../assets/images/AddHimaImage.png')}
+                    style={{
+
+                    }}
+                />
             </TouchableOpacity>
             <AddHimaModal
+                // isVisible={true}
                 isVisible={isModalVisible}
                 onClose={() => setIsModalVisible(false)}
                 onAdd={(newPhrase) => {
@@ -217,19 +224,20 @@ const styles = StyleSheet.create({
     },
     fab: {
         position: 'absolute',
-        right: 20,
+        // right: 20,
         bottom: 100,
-        backgroundColor: 'yellow',
-        width: 56,
-        height: 56,
-        borderRadius: 28,
+        // backgroundColor: 'yellow',
+        width: "100%",
+        // height: 56,
+        // borderRadius: 28,
         justifyContent: 'center',
         alignItems: 'center',
-        elevation: 6,
-        shadowRadius: 4,
-        shadowOpacity: 0.3,
-        shadowColor: '#000',
-        shadowOffset: { height: 3, width: 0 },
+        paddingLeft: 26,
+        // elevation: 6,
+        // shadowRadius: 4,
+        // shadowOpacity: 0.3,
+        // shadowColor: '#000',
+        // shadowOffset: { height: 3, width: 0 },
     },
     fabText: {
         fontSize: 24,

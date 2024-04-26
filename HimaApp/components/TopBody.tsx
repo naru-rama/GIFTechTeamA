@@ -211,9 +211,10 @@ const styles = StyleSheet.create({
     },
     randomTextContainer: {
         position: 'absolute',
-        padding: 8,
+        // padding: 8,
         borderRadius: 10,
         maxWidth: 240,
+        backgroundColor: '#1E64B8',
     },
     randomText: {
         fontWeight: 'bold',

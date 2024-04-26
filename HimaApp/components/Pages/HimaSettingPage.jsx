@@ -72,7 +72,7 @@ export default function HimaSettingPage() {
                         color: '#F3D0FF',
                         fontSize: 13,
                         fontWeight: 'bold',
-                        marginTop: 20,
+                        marginTop: 0,
                     }}
                 >通知のスタイル</Text>
                 <View
@@ -402,7 +402,7 @@ const styles = StyleSheet.create({
     lightBlueContainer: {
         flexDirection: 'row',
         // even
-        marginTop: 4,
+        marginTop: 10,
         backgroundColor: '#3F7BC3',
         padding: 20,
         borderRadius: 5,

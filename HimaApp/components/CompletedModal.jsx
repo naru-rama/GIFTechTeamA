@@ -11,6 +11,11 @@ const CompletedModal = ({ isVisible, onClose }) => {
     return (
         <Modal visible={isVisible} animationType="fade" transparent>
             <View style={styles.modalContainer}>
+                <View style={{ width: "90%" }}>
+                    <TouchableOpacity onPress={onClose} style={styles.closeButton}>
+                        <Text style={styles.closeButtonText}>X</Text>
+                    </TouchableOpacity>
+                </View>
                 <View style={styles.modalContent}>
                     <Text style={styles.titleText}>ヒマつぶしたもの</Text>
                     <View style={styles.optionsContainer}>
@@ -20,9 +25,6 @@ const CompletedModal = ({ isVisible, onClose }) => {
                             </TouchableOpacity>
                         ))}
                     </View>
-                    <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-                        <Text style={styles.closeButtonText}>X</Text>
-                    </TouchableOpacity>
                 </View>
             </View>
         </Modal>
@@ -37,14 +39,17 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 0, 0, 0.5)',
     },
     modalContent: {
-        width: '80%',
-        backgroundColor: '#0000ff',
+        width: '90%',
+        backgroundColor: '#3F7BC3',
         borderRadius: 20,
-        padding: 20,
+        padding: 30,
+        paddingVertical: 40,
+        paddingTop: 60,
     },
     titleText: {
         fontSize: 24,
-        color: '#ffffff',
+        color: '#F3D0FF',
+        fontWeight: 'bold',
         marginBottom: 20,
         textAlign: 'center',
     },
@@ -52,23 +57,32 @@ const styles = StyleSheet.create({
         marginBottom: 20,
     },
     optionButton: {
-        backgroundColor: '#0000cc',
+        backgroundColor: '#1E64B8',
         padding: 15,
         borderRadius: 10,
         marginBottom: 10,
     },
     optionText: {
         fontSize: 16,
-        color: '#ffffff',
-        textAlign: 'center',
+        color: '#F3D0FF',
+        textAlign: 'left',
     },
     closeButton: {
-        position: 'absolute',
-        top: 10,
-        right: 10,
+        // position: 'absolute',
+        // top: 10,
+        // right: 10,
+        backgroundColor: '#3F7BC3',
+        width: 30,
+        height: 30,
+        marginBottom: 10,
+        borderRadius: 4,
+        marginRight: 10,
+        marginLeft: "auto",
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     closeButtonText: {
-        color: '#ffffff',
+        color: '#F3D0FF',
         fontSize: 16,
     },
 });

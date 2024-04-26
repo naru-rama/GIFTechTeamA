@@ -3,7 +3,7 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { useFonts } from 'expo-font';
 import { Stack, Tabs } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { AppState } from 'react-native';
+import { LogBox } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import notifee, { EventType } from '@notifee/react-native';
@@ -26,7 +26,7 @@ export const unstable_settings = {
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
-
+LogBox.ignoreLogs(["Require cycle: node_modules/victory"]);
 
 
 export default function RootLayout() {

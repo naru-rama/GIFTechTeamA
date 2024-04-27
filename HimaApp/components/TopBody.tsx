@@ -116,7 +116,7 @@ const TopBody = ({ }) => {
 
     // phraseの高さを常に1ずつ上げる
 
-    const addNewHimaItem = (newPhrase) => {
+    const addNewHimaItem = (newPhrase, id) => {
         if (!newPhrase) {
             return;
         }
@@ -140,6 +140,7 @@ const TopBody = ({ }) => {
             });
         });
         newHimaItems.push({
+            id: id,
             text: newPhrase,
             isNew: true,
             position: {
@@ -178,9 +179,9 @@ const TopBody = ({ }) => {
                 // isVisible={true}
                 isVisible={isModalVisible}
                 onClose={() => setIsModalVisible(false)}
-                onAdd={(newPhrase) => {
+                onAdd={(newPhrase, id) => {
                     console.log('newPhrase:', newPhrase);
-                    addNewHimaItem(newPhrase);
+                    addNewHimaItem(newPhrase, id);
                     setIsModalVisible(false);
                     // フレーズを追加
                     // setHimaItems((currentPhrases) => {

@@ -32,6 +32,7 @@ export const addHimaItem = async (name) => {
         updatedAt: new Date()
     });
     console.log("Document written with ID: ", docRef.id);
+    return docRef.id;
 }
 
 export const completeHimaItem = async (id) => {

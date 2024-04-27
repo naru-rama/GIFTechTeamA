@@ -55,11 +55,11 @@ const AddHimaModal = ({ isVisible, onClose, onAdd }) => {
                                 style={styles.button}
                                 onPress={async () => {
                                     if (inputText.trim() !== '') {
-                                        await addHimaItem(inputText);
-                                        
+                                        const id = await addHimaItem(inputText);
+                                        // console.log('item', item);
+                                        onAdd(inputText, id);
                                     }
-                                    onAdd(inputText);
-                                        setInputText('');
+                                    setInputText('');
                                 }}
                             >
                                 <Text style={styles.textStyle}>OK</Text>

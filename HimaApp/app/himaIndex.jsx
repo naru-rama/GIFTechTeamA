@@ -49,7 +49,7 @@ export default function himaIndex() {
             setSelectedItem(himaItems[index]);
             flatListRef.current?.scrollToIndex({
                 index: index,
-                    viewPosition: 0,
+                    viewPosition: 0.3,
                     animated: true,
             });
         }
@@ -153,6 +153,14 @@ export default function himaIndex() {
                     // justifyContent: ',
                     alignItems: 'center',
                 }}
+                onLayout={obj => {
+                        const height = obj.nativeEvent?.layout?.height;
+                        if (!height) return;
+
+                        setItemHeightList((prevData) => {
+                            return [...prevData, height];
+                        });
+                    }}
             >
                 {isSelected && !hideConfirmationUI && (
                     <ImageBackground source={require('../assets/images/confirmationbubble.png')} style={styles.image}>
@@ -179,14 +187,6 @@ export default function himaIndex() {
                         setHideConfirmationUI(false);
                     }}
                     style={styles.item}
-                    onLayout={obj => {
-                        const height = obj.nativeEvent?.layout?.height;
-                        if (!height) return;
-
-                        setItemHeightList((prevData) => {
-                            return [...prevData, height];
-                        });
-                    }}
                 >
                     <Text style={[
                         styles.itemText,

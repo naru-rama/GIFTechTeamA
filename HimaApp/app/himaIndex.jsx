@@ -18,6 +18,7 @@ export default function himaIndex() {
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [showSpeechBubble, setShowSpeechBubble] = useState(false);
     const [hideConfirmationUI, setHideConfirmationUI] = useState(false);
+    const [createdItemId, setCreatedItemId] = useState(null);
     const navigation = useNavigation();
     const flatListRef = useRef(null);
     const fadeAnim = useRef(new Animated.Value(1)).current;
@@ -76,21 +77,21 @@ export default function himaIndex() {
     }, [showConfirmation]);
 
     useEffect(() => {
-        if (showSpeechBubble) {
+        if (createdItemId && !showConfirmation) {
             const timer = setTimeout(() => {
                 Animated.timing(fadeAnim, {
                     toValue: 0,
                     duration: 500,
                     useNativeDriver: true,
                 }).start(() => {
-                    setShowSpeechBubble(false);
+                    setCreatedItemId(null);
                     fadeAnim.setValue(1);
                 });
-            }, 2000);
+            }, 1000);
 
             return () => clearTimeout(timer);
         }
-    }, [showSpeechBubble]);
+    }, [createdItemId, showConfirmation]);
 
     const handleInputFocus = () => setIsFocused(true);
     const handleInputBlur = () => setIsFocused(false);
@@ -104,10 +105,11 @@ export default function himaIndex() {
     const handleButtonPress = async () => {
         Keyboard.dismiss();
         if (inputText.trim()) {
-            await addHimaItem(inputText.trim());
+            const id = await addHimaItem(inputText.trim());
             const items = await getAllHimaItems();
             setHimaItems(items);
             setShowConfirmation(true);
+            setCreatedItemId(id);
         }
         clearInput();
     };
@@ -145,6 +147,8 @@ export default function himaIndex() {
 
     const renderItem = ({ item }) => {
         const isSelected = selectedItem && (selectedItem.id === item.id);
+        const isCreatedItem = createdItemId === item.id;
+        const isLastItem = himaItems[himaItems.length - 1].id === item.id;
 
         return (
             <View
@@ -152,6 +156,7 @@ export default function himaIndex() {
                     width: '100%',
                     // justifyContent: ',
                     alignItems: 'center',
+                    marginBottom: isLastItem ? 150 : 0,
                 }}
                 onLayout={obj => {
                         const height = obj.nativeEvent?.layout?.height;
@@ -181,6 +186,16 @@ export default function himaIndex() {
                         </View>
                     </ImageBackground>
                 )}
+                {isCreatedItem && (
+                    <Animated.Image
+                        source={require('../assets/images/speechbubble.png')}
+                        style={[styles.speechBubble, { opacity: fadeAnim }]}
+                    />
+                )}
+                {/* <Image
+                        source={require('../assets/images/speechbubble.png')}
+                        style={[styles.speechBubble]}
+                    /> */}
                 <TouchableOpacity
                     onPress={() => {
                         setSelectedItem(item);
@@ -242,12 +257,6 @@ export default function himaIndex() {
                     </TouchableOpacity>
                 </View>
             </Modal>
-            {showSpeechBubble && (
-                <Animated.Image
-                    source={require('../assets/images/speechbubble.png')}
-                    style={[styles.speechBubble, { opacity: fadeAnim }]}
-                />
-            )}
             <View style={styles.topBar}>
                 <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
                     <Text style={styles.backButtonText}>戻る</Text>
@@ -489,10 +498,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     speechBubble: {
-        position: 'absolute',
-        bottom: 200,
+        // position: 'absolute',
+        // bottom: 200,
         width: 118,
         height: 37,
+        marginBottom: -26,
     },
     image: {
         width: 274,

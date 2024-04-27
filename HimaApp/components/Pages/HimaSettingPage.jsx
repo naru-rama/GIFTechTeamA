@@ -72,7 +72,7 @@ export default function HimaSettingPage() {
                     style={{
                         color: '#F3D0FF',
                         fontSize: 13,
-                        fontWeight: 'bold',
+                        fontWeight: '700',
                         marginTop: 0,
                     }}
                 >通知のスタイル</Text>
@@ -126,7 +126,7 @@ export default function HimaSettingPage() {
                         style={{
                             color: '#F3D0FF',
                             fontSize: 15,
-                            fontWeight: 'bold',
+                            fontWeight: '700',
 
                         }}
                     >
@@ -139,21 +139,21 @@ export default function HimaSettingPage() {
                         disabled={false}
                         activeText={'On'}
                         inActiveText={'Off'}
-                        circleSize={26}
-                        barHeight={30}
+                        circleSize={22}
+                        barHeight={32}
                         circleBorderWidth={0}
                         backgroundActive={'#F3D0FF'}
-                        backgroundInactive={'gray'}
+                        backgroundInactive={'#1E64B8'}
                         circleActiveColor={'#1E64B8'}
-                        circleInActiveColor={'#1E64B8'}
+                        circleInActiveColor={'#3F7BC3'}
                         // renderInsideCircle={() => <CustomComponent />} // custom component to render inside the Switch circle (Text, Image, etc.)
                         changeValueImmediately={true} // if rendering inside circle, change state immediately or wait for animation to complete
                         innerCircleStyle={{ alignItems: "center", justifyContent: "center" }} // style for inner animated circle for what you (may) be rendering inside the circle
                         outerCircleStyle={{}} // style for outer animated circle
                         renderActiveText={false}
                         renderInActiveText={false}
-                        switchLeftPx={2} // denominator for logic when sliding to TRUE position. Higher number = more space from RIGHT of the circle to END of the slider
-                        switchRightPx={2} // denominator for logic when sliding to FALSE position. Higher number = more space from LEFT of the circle to BEGINNING of the slider
+                        switchLeftPx={3} // denominator for logic when sliding to TRUE position. Higher number = more space from RIGHT of the circle to END of the slider
+                        switchRightPx={3} // denominator for logic when sliding to FALSE position. Higher number = more space from LEFT of the circle to BEGINNING of the slider
                         switchWidthMultiplier={2.2} // multiplied by the `circleSize` prop to calculate total width of the Switch
                     // switchBorderRadius={30} // Sets the border Radius of the switch slider. If unset, it remains the circleSize.
                     />
@@ -164,7 +164,7 @@ export default function HimaSettingPage() {
                     style={{
                         color: '#F3D0FF',
                         fontSize: 13,
-                        fontWeight: 'bold',
+                        fontWeight: '700',
                         marginTop: 10,
                     }}
                 >知らせる間隔</Text>
@@ -188,8 +188,10 @@ export default function HimaSettingPage() {
                         <Text
                             style={{
                                 // marginRight: 4,
+                                
                                 color: '#1E64B8',
                                 left: 0,
+                                fontWeight: '700',
 
                             }}
                         >
@@ -214,6 +216,7 @@ export default function HimaSettingPage() {
                                 // marginRight: 4,
                                 color: '#1E64B8',
                                 left: 0,
+                                fontWeight: '700',
 
                             }}
                         >
@@ -238,6 +241,7 @@ export default function HimaSettingPage() {
                                 // marginRight: 4,
                                 color: '#1E64B8',
                                 left: 0,
+                                fontWeight: '700',
 
                             }}
                         >
@@ -265,7 +269,7 @@ export default function HimaSettingPage() {
                         style={{
                             color: '#F3D0FF',
                             fontSize: 13,
-                            fontWeight: 'bold',
+                            fontWeight: '700',
                             verticalAlign: 'middle',
                             alignItems: 'center',
                         }}
@@ -276,11 +280,11 @@ export default function HimaSettingPage() {
                         disabled={false}
                         activeText={'On'}
                         inActiveText={'Off'}
-                        circleSize={24}
-                        barHeight={26}
+                        circleSize={16}
+                        barHeight={24}
                         circleBorderWidth={0}
                         backgroundActive={'#F3D0FF'}
-                        backgroundInactive={'gray'}
+                        backgroundInactive={'#3F7BC3'}
                         circleActiveColor={'#1E64B8'}
                         circleInActiveColor={'#1E64B8'}
                         // renderInsideCircle={() => <CustomComponent />} // custom component to render inside the Switch circle (Text, Image, etc.)
@@ -289,8 +293,8 @@ export default function HimaSettingPage() {
                         outerCircleStyle={{}} // style for outer animated circle
                         renderActiveText={false}
                         renderInActiveText={false}
-                        switchLeftPx={3} // denominator for logic when sliding to TRUE position. Higher number = more space from RIGHT of the circle to END of the slider
-                        switchRightPx={3} // denominator for logic when sliding to FALSE position. Higher number = more space from LEFT of the circle to BEGINNING of the slider
+                        switchLeftPx={4} // denominator for logic when sliding to TRUE position. Higher number = more space from RIGHT of the circle to END of the slider
+                        switchRightPx={4} // denominator for logic when sliding to FALSE position. Higher number = more space from LEFT of the circle to BEGINNING of the slider
                         switchWidthMultiplier={2} // multiplied by the `circleSize` prop to calculate total width of the Switch
                         switchBorderRadius={30} // Sets the border Radius of the switch slider. If unset, it remains the circleSize.
                     />
@@ -315,6 +319,7 @@ export default function HimaSettingPage() {
                         <Text
                             style={{
                                 // marginRight: 4,
+                                fontWeight: '700',
                                 color: '#1E64B8',
                                 left: 10,
 
@@ -329,7 +334,7 @@ export default function HimaSettingPage() {
                     <Text
                         style={{
                             fontSize: 20,
-                            fontWeight: 'bold',
+                            fontWeight: '700',
                             color: '#F3D0FF',
                         }}
                     >
@@ -351,10 +356,11 @@ export default function HimaSettingPage() {
                                 // marginRight: 4,
                                 color: '#1E64B8',
                                 left: 10,
+                                fontWeight: '700',
 
                             }}
                         >
-                            12:00
+                            6:00
                         </Text>
                         <FontAwesome name="chevron-down" color={'#1E64B8'} style={{
                             right: -30,
@@ -387,7 +393,7 @@ export default function HimaSettingPage() {
                                 style={{
                                     color: '#1E64B8',
                                     fontSize: 16,
-                                    fontWeight: 'bold',
+                                    fontWeight: '700',
                                 }}
                                 t>キャンセル</Text>
                         </View>
@@ -412,7 +418,7 @@ export default function HimaSettingPage() {
                                 style={{
                                     color: '#1E64B8',
                                     fontSize: 16,
-                                    fontWeight: 'bold',
+                                    fontWeight: '700',
                                 }}
                                 t>OK</Text>
                         </View>
@@ -458,7 +464,7 @@ const styles = StyleSheet.create({
     backButtonText: {
         color: '#F2D0FF',
         fontSize: 18,
-        fontWeight: 'bold',
+        fontWeight: '700',
     },
     registrationCountContainer: {
         alignItems: 'center',
@@ -480,8 +486,8 @@ const styles = StyleSheet.create({
     screenMockText: {
         marginTop: 10,
         color: '#F3D0FF',
-        fontSize: 16,
-        fontWeight: 'bold',
+        fontSize: 12,
+        fontWeight: '700',
         textAlign: 'center',
     },
 

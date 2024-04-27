@@ -13,7 +13,7 @@ const VerticalLine = (props: PropsType) => {
     /** DefaultStyle: グレーの縦線 */
     const defaultStyle: ViewStyle = {
         width: 2, /* 縦線の幅を設定する */
-        height: "80%", /* コンポーネントの高さに合わせる */
+        height: 12, /* コンポーネントの高さに合わせる */
         backgroundColor: "#287A5C" /* 縦線の色を指定 */
     };
 

@@ -219,7 +219,10 @@ const styles = StyleSheet.create({
         fontSize: 16,
         // border
         borderWidth: 1,
-        padding: 2,
+        paddingVertical: 2,
+        paddingHorizontal: 7,
+        textAlign: 'center',
+        lineHeight: 24,
     },
     fab: {
         position: 'absolute',

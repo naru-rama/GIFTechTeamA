@@ -9,46 +9,72 @@ import { useLocalSearchParams } from 'expo-router';
 
 export default function himaIndex() {
     const { id } = useLocalSearchParams();
+    const [isFirstRender, setIsFirstRender] = useState(true);
     const [inputText, setInputText] = useState('');
     const [himaItems, setHimaItems] = useState([]);
+    const [itemHeightList, setItemHeightList] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
     const [isFocused, setIsFocused] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [showSpeechBubble, setShowSpeechBubble] = useState(false);
     const [hideConfirmationUI, setHideConfirmationUI] = useState(false);
     const navigation = useNavigation();
-    const flatListRef = useRef();
+    const flatListRef = useRef(null);
     const fadeAnim = useRef(new Animated.Value(1)).current;
+
+    const getItemHeight = (index) => {
+        if (itemHeightList[index] !== undefined) return itemHeightList[index];
+        return 0;
+    };
+    const getItemOffset = (index) => {
+        if (itemHeightList[index] === undefined) return 0;
+        let data = itemHeightList.slice(0, index).reduce((a, c) => a + c, 0);
+        return data;
+    };
 
     useEffect(() => {
         const fetchHimaItems = async () => {
             const items = await getAllHimaItems();
+            console.log('items', items);
             setHimaItems(items);
         };
         fetchHimaItems();
     }, []);
 
     useEffect(() => {
+        if (himaItems.length == 0 || (himaItems.length != itemHeightList.length)) return;
         if (id) {
-            // 該当のIDのアイテムのindexを取得
-            const index = scrollHimaItems.findIndex(item => item.id === id);
-            // if (index == -1) {
-            //     console.log('Not found');
-            //     return;
-            // };
-            flatListRef.current?.scrollToEnd({
+            const index = himaItems.findIndex(item => item.id === id);
+            if (index == -1) return;
+            setSelectedItem(himaItems[index]);
+            flatListRef.current?.scrollToIndex({
                 index: index,
-                viewPosition: 0.5,
+                    viewPosition: 0,
+                    animated: true,
             });
         }
-    }, [id]);
+    }, [itemHeightList]);
+    // useEffect(() => {
+    //     if (id) {
+    //         // 該当のIDのアイテムのindexを取得
+    //         const index = scrollHimaItems.findIndex(item => item.id === id);
+    //         // if (index == -1) {
+    //         //     console.log('Not found');
+    //         //     return;
+    //         // };
+    //         flatListRef.current?.scrollToEnd({
+    //             index: index,
+    //             viewPosition: 0.5,
+    //         });
+    //     }
+    // }, [id]);
 
     useEffect(() => {
         if (!showConfirmation && himaItems.length > 0 && flatListRef.current) {
             flatListRef.current.scrollToEnd({ animated: true });
         }
     }, [showConfirmation]);
-    
+
     useEffect(() => {
         if (showSpeechBubble) {
             const timer = setTimeout(() => {
@@ -61,7 +87,7 @@ export default function himaIndex() {
                     fadeAnim.setValue(1);
                 });
             }, 2000);
-    
+
             return () => clearTimeout(timer);
         }
     }, [showSpeechBubble]);
@@ -119,53 +145,71 @@ export default function himaIndex() {
 
     const renderItem = ({ item }) => {
         const isSelected = selectedItem && (selectedItem.id === item.id);
-    
+
         return (
-            <TouchableOpacity
-                onPress={() => {
-                    setSelectedItem(item);
-                    setHideConfirmationUI(false);
+            <View
+                style={{
+                    width: '100%',
+                    // justifyContent: ',
+                    alignItems: 'center',
                 }}
-                style={styles.item}
             >
                 {isSelected && !hideConfirmationUI && (
-                <ImageBackground source={require('../assets/images/confirmationbubble.png')} style={styles.image}>
-                    <View style={styles.buttonContainer}>
-                    <TouchableOpacity 
-                        style={styles.confirmationButton} 
-                        onPress={async () => {
-                            await completeHimaItem(item.id);
-                            const updatedItems = await getAllHimaItems();
-                            setHimaItems(updatedItems);
-                            setHideConfirmationUI(true);
-                        }}>
-                        <Text style={styles.confirmationButtonText}>OK🥱</Text>
-                    </TouchableOpacity>
-                      <TouchableOpacity style={styles.confirmationButton} onPress={() => setHideConfirmationUI(true)}>
-                        <Text style={styles.confirmationButtonText}>NO😎</Text>
-                      </TouchableOpacity>
-                    </View>
-                  </ImageBackground>
+                    <ImageBackground source={require('../assets/images/confirmationbubble.png')} style={styles.image}>
+                        <View style={styles.buttonContainer}>
+                            <TouchableOpacity
+                                style={styles.confirmationButton}
+                                onPress={async () => {
+                                    await completeHimaItem(item.id);
+                                    const updatedItems = await getAllHimaItems();
+                                    setHimaItems(updatedItems);
+                                    setHideConfirmationUI(true);
+                                }}>
+                                <Text style={styles.confirmationButtonText}>OK🥱</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styles.confirmationButton} onPress={() => setHideConfirmationUI(true)}>
+                                <Text style={styles.confirmationButtonText}>NO😎</Text>
+                            </TouchableOpacity>
+                        </View>
+                    </ImageBackground>
                 )}
-                <Text style={[
-                    styles.itemText,
-                    { color: isSelected ? getColorByCount(item.doneCount) : '#F2D0FF' }
-                ]}>
-                    {item.name}
-                </Text>
-                {isSelected && (
-                <Text style={[
-                    styles.itemTextSub,
-                    { color: getColorByCount(item.doneCount) }
-                ]}>
-                    {setText(item.doneCount)}
-                </Text>
-            )}
-            </TouchableOpacity>
+                <TouchableOpacity
+                    onPress={() => {
+                        setSelectedItem(item);
+                        setHideConfirmationUI(false);
+                    }}
+                    style={styles.item}
+                    onLayout={obj => {
+                        const height = obj.nativeEvent?.layout?.height;
+                        if (!height) return;
+
+                        setItemHeightList((prevData) => {
+                            return [...prevData, height];
+                        });
+                    }}
+                >
+                    <Text style={[
+                        styles.itemText,
+                        { color: isSelected ? getColorByCount(item.doneCount) : '#F2D0FF' }
+                    ]}>
+                        {item.name}
+                    </Text>
+                    {isSelected && (
+                        <Text style={[
+                            styles.itemTextSub,
+                            { color: getColorByCount(item.doneCount) }
+                        ]}>
+                            {setText(item.doneCount)}
+                        </Text>
+                    )}
+                </TouchableOpacity>
+            </View>
         );
     };
-    
+
     const handleScroll = () => {
+        if (isFirstRender) return;
+        console.log('scroll');
         setSelectedItem(null);
     };
 
@@ -226,15 +270,26 @@ export default function himaIndex() {
                     keyExtractor={(item, index) => index.toString()}
                     style={styles.list}
                     onScroll={handleScroll}
-                    // onEndReached={() => {
-                    //     console.log('onEndReached');
-                    //     setScrollHimaItems(prevItems => [...prevItems, ...himaItems]);
-                    // }}
-                    // onEndReachedThreshold={1}
-                    // onStartReached={() => {
-                    //     setScrollHimaItems(prevItems => [...himaItems, ...prevItems]);
-                    //     }
-                    // }
+                    getItemLayout={(data, index) => ({
+                        length: getItemHeight(index),
+                        offset: getItemOffset(index),
+                        index,
+                    })}
+                    onMomentumScrollEnd={() => {
+                        setIsFirstRender(false);
+                    }}
+                // getItemLayout={(data, index) => (
+                //     { length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index }
+                // )}
+                // onEndReached={() => {
+                //     console.log('onEndReached');
+                //     setScrollHimaItems(prevItems => [...prevItems, ...himaItems]);
+                // }}
+                // onEndReachedThreshold={1}
+                // onStartReached={() => {
+                //     setScrollHimaItems(prevItems => [...himaItems, ...prevItems]);
+                //     }
+                // }
                 />
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                 <View style={styles.inputContainer}>
@@ -381,6 +436,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     item: {
+        position: 'relative',
         fontSize: 30,
         height: 30,
         top: 0,
@@ -402,8 +458,8 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
     },
-    picker: { 
-        height: 400, 
+    picker: {
+        height: 400,
         width: 400,
     },
     chipItem: {
@@ -442,14 +498,14 @@ const styles = StyleSheet.create({
         height: 107,
         justifyContent: 'center',
         alignItems: 'center'
-      },
-      buttonContainer: {
+    },
+    buttonContainer: {
         flexDirection: 'row',
         justifyContent: 'space-around',
         width: '60%',
-        top: 10
-      },
-      confirmationButton: {
+        // top: 10
+    },
+    confirmationButton: {
         backgroundColor: '#1E64B8',
         padding: 10,
         borderRadius: 5,
@@ -457,10 +513,10 @@ const styles = StyleSheet.create({
         height: 40,
         alignItems: 'center',
         justifyContent: 'center'
-      },
-      confirmationButtonText: {
+    },
+    confirmationButtonText: {
         color: 'white',
         fontSize: 16,
         fontWeight: 'bold'
-      }
+    }
 });

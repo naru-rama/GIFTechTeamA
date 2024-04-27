@@ -299,10 +299,12 @@ const styles = StyleSheet.create({
         fontSize: 24, // Adjust size to match the design
         // marginRight: 8, // Space between emoji and text label
         color: '#F3D0FF', // Set the text color to white
+        fontWeight: 'bold', // Make the font bold
     },
     label: {
         fontSize: 16,
         color: '#F3D0FF', // Set the text color to white
+        fontWeight: 'bold', // Make the font bold
     },
     valueContainer: {
         backgroundColor: '#1E64B8', // Set the background color to white

@@ -1,0 +1,35 @@
+{
+    "message": {
+      "token": "efLNZI66r0ePlLOKbJq2au:APA91bFF_gh9jjAJZSOAhPTp-TDA1kIRF_C5wi6F2ELuYfl2NHxIjP2TLG0i3mfc2vxEcsJKDiqD5-h4aNbrrpiLCEVj9EHrJa4TrTzniu58N-6sChvZ58HZ86ASgA1HH8DbP84HVW0g",
+      "notification":{
+         "title": "今ヒマ〜？"
+       },
+       "android":{
+         "notification":{
+           "image":"https://chichibu-prod-bucket.s3.ap-northeast-1.amazonaws.com/images/chichibu/home-page/disaster-prevention.png"
+         }
+       },
+       "apns":{
+         "payload":{
+           "aps":{
+             "alert": {
+               "title": "🥱ヒマからのお便り🥱",
+               "body": "さてさて......ヒマかね......?ヒマな時にやりたいこと✅を教えてくれたら覚えておくよ✍️。気が向いたら通知💬と合わせて送ってあげるね。\nby ヒマより"
+             },
+             "mutable-content":1,
+             "category": "scenario-3"
+           }
+         },
+         "fcm_options": {
+         }
+       },
+       "data": {
+           "type": "scenario-3"
+         },
+       "webpush":{
+         "headers":{
+           "image":"https://chichibu-prod-bucket.s3.ap-northeast-1.amazonaws.com/images/chichibu/home-page/disaster-prevention.png"
+         }
+       }
+    }
+  }

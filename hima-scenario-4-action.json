@@ -1,0 +1,36 @@
+{
+    "message": {
+      "token": "efLNZI66r0ePlLOKbJq2au:APA91bFF_gh9jjAJZSOAhPTp-TDA1kIRF_C5wi6F2ELuYfl2NHxIjP2TLG0i3mfc2vxEcsJKDiqD5-h4aNbrrpiLCEVj9EHrJa4TrTzniu58N-6sChvZ58HZ86ASgA1HH8DbP84HVW0g",
+      "notification":{
+         "title": "今ヒマ〜？"
+       },
+       "android":{
+         "notification":{
+           "image":"https://chichibu-prod-bucket.s3.ap-northeast-1.amazonaws.com/images/chichibu/home-page/disaster-prevention.png"
+         }
+       },
+       "apns":{
+         "payload":{
+           "aps":{
+             "alert": {
+               "title": "🥱ヒマ通知【辞典付き】🥱",
+               "body": "ありゃリゃ。ヒマになってきたね〜。そういえば、【XXXXX】って書いてあったから、今やってもいいんじゃない？"
+             },
+             "mutable-content":1,
+             "category": "has-action"
+           }
+         },
+         "fcm_options": {
+         }
+       },
+       "data": {
+           "type": "has-action",
+           "himaId": "1"
+         },
+       "webpush":{
+         "headers":{
+           "image":"https://chichibu-prod-bucket.s3.ap-northeast-1.amazonaws.com/images/chichibu/home-page/disaster-prevention.png"
+         }
+       }
+    }
+  }

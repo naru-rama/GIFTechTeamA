@@ -51,6 +51,21 @@ export const completeHimaItem = async (id) => {
     console.log("completed");
 }
 
+
+export const storeToken = async (token) => {
+    console.log("Adding data from hima actions");
+    const timestamp = Date.now().toString(16);
+    const randomHex = Math.floor(Math.random() * 0xffffff).toString(16);
+    const docRef = await addDoc(collection(db, "tokens"), {
+        id: randomHex,
+        token: token,
+        doneCount: 0,
+        createdAt: new Date(),
+        updatedAt: new Date()
+    });
+    console.log("Document written with ID: ", docRef.id);
+}
+
 // 多分使わない
 // export const updateHimaItem = async (id, name) => {
 //     console.log("Updating data from hima actions");

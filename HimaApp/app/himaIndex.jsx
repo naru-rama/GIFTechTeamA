@@ -124,7 +124,7 @@ export default function himaIndex() {
             <TouchableOpacity
                 onPress={() => {
                     setSelectedItem(item);
-                    setHideConfirmationUI(false);  // Resetting when another item is selected
+                    setHideConfirmationUI(false);
                 }}
                 style={styles.item}
             >
@@ -226,6 +226,15 @@ export default function himaIndex() {
                     keyExtractor={(item, index) => index.toString()}
                     style={styles.list}
                     onScroll={handleScroll}
+                    // onEndReached={() => {
+                    //     console.log('onEndReached');
+                    //     setScrollHimaItems(prevItems => [...prevItems, ...himaItems]);
+                    // }}
+                    // onEndReachedThreshold={1}
+                    // onStartReached={() => {
+                    //     setScrollHimaItems(prevItems => [...himaItems, ...prevItems]);
+                    //     }
+                    // }
                 />
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                 <View style={styles.inputContainer}>

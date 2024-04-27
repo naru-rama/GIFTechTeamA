@@ -420,7 +420,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '100%',
         // paddingHorizontal: 10,
-        marginTop: 70,
+        marginTop: 50,
     },
     backButton: {
         padding: 70,

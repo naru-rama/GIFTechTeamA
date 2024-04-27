@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "HimaApp",
+    "name": "Heema",
     "slug": "HimaApp",
     "scheme": "HimaApp",
     "version": "1.0.0",
@@ -9,6 +9,14 @@
     ],
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "baf617a8-a450-47a4-8b67-b8be3a907669"
+      }
+    }
   }
 }

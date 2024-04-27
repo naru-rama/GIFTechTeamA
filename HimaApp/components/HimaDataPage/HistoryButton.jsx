@@ -4,7 +4,7 @@ import { Link } from 'expo-router';
 
 export const HistoryButton = () => {
     return (
-        <Link href="setup" asChild>
+        <Link href="himaOldData" asChild>
             <TouchableOpacity
                 style={{
                     marginTop: 20,

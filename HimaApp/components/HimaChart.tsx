@@ -25,8 +25,8 @@ export const HimaChart = () => {
             height={130}
             barBorderRadius={4}
             // width={230}
-            yAxisTextStyle={{color: '#F3D0FF'}}
-            xAxisLabelTextStyle={{color: '#F3D0FF'}}
+            yAxisTextStyle={{color: '#F3D0FF', fontWeight: '700'}}
+            xAxisLabelTextStyle={{color: '#F3D0FF', fontWeight: '700'}}
             hideRules
             showLine={false}
             data={barData}

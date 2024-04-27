@@ -242,13 +242,14 @@ const styles = StyleSheet.create({
     cardContainer: {
         backgroundColor: '#3F7BC3', // Use the blue background color
         borderRadius: 10, // Rounded corners
-        padding: 16, // Spacing inside the card
+        padding: 22, // Spacing inside the card
         width: '90%', // Take up 90% of the screen width
     },
     chartContainer: {
         // Height and other styling for chart
     },
     statsContainer: {
+        marginTop: 16, // Margin from the top
         // width: '90%', // Full width for stats container
         // Layout for stat items
     },
@@ -272,12 +273,13 @@ const styles = StyleSheet.create({
     },
     timeRangeBox: {
         backgroundColor: '#1E64B8', // Blue background color
-        padding: 8, // Padding inside the box
+        // padding: 8, // Padding inside the box
         borderRadius: 5, // Rounded corners
         alignItems: 'center', // Align items in the center
         justifyContent: 'center', // Justify content in the center
         marginTop: 8, // Margin from the top
-        height: 80, // Height of the box
+        height: 74, // Height of the box
+        // marginBottom: 10,
     },
 
     summaryContainer: {
@@ -288,7 +290,7 @@ const styles = StyleSheet.create({
         // backgroundColor: '#4A90E2',
         borderRadius: 10,
         padding: 0,
-        marginVertical: 8,
+        marginVertical: 4,
     },
     labelContainer: {
         width: "30%",
@@ -299,12 +301,12 @@ const styles = StyleSheet.create({
         fontSize: 24, // Adjust size to match the design
         // marginRight: 8, // Space between emoji and text label
         color: '#F3D0FF', // Set the text color to white
-        fontWeight: 'bold', // Make the font bold
+        fontWeight: "700", // Make the font bold
     },
     label: {
-        fontSize: 16,
+        fontSize: 14,
         color: '#F3D0FF', // Set the text color to white
-        fontWeight: 'bold', // Make the font bold
+        fontWeight: '700', // Make the font bold
     },
     valueContainer: {
         backgroundColor: '#1E64B8', // Set the background color to white

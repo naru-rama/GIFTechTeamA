@@ -13,7 +13,7 @@ export const HistoryButton = () => {
                     justifyContent: 'center',
                     borderColor: '#F3D0FF',
                     borderWidth: 1,
-                    borderRadius: 4,
+                    borderRadius: 10,
                     height: 70,
                 }}
                 onPress={() => {

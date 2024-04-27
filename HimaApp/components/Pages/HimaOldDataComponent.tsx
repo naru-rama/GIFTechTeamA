@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     cardWrap: {
-        width: '94%',
+        width: '91%',
         height: 110,
 
         paddingTop: 4,
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
 
-        backgroundColor: '#379df0',
+        backgroundColor: '#3F7BC3',
     },
     lower: {
         gap: 20,
@@ -249,46 +249,46 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
 
-        backgroundColor: '#379df0',
+        backgroundColor: '#3F7BC3',
     },
     separator: {
         marginVertical: 3,
         height: 1,
-        width: '94%',
-        backgroundColor: 'white',
+        width: '91%',
+        backgroundColor: '#F3D0FF',
     },
 
 
     text8: {
         color: '#F3D0FF',
         fontSize: 8,
-        fontWeight: 'bold',
+        fontWeight: '700',
     },
     text10_1: {
         color: '#F3D0FF',
         fontSize: 10,
-        fontWeight: 'bold',
-        letterSpacing: 1,
+        fontWeight: '700',
+        letterSpacing: 0.25,
     },
     text10_2: {
         color: '#F3D0FF',
         fontSize: 10,
-        fontWeight: 'bold',
-        letterSpacing: 2,
+        fontWeight: '700',
+        letterSpacing: 0.25,
     },
     text12: {
         color: '#F3D0FF',
         fontSize: 12,
-        fontWeight: 'bold',
+        fontWeight: '700',
     },
     text20: {
         color: '#F3D0FF',
-        fontSize: 20,
-        fontWeight: 'bold',
+        fontSize: 16,
+        fontWeight: '700',
     },
     text24: {
         color: '#F3D0FF',
         fontSize: 24,
-        fontWeight: 'bold',
+        fontWeight: '700',
     },
 });

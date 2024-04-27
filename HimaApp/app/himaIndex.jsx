@@ -351,6 +351,7 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         width: 128,
         height: 39,
+        marginRight: 14,
     },
     okButtonText: {
         color: '#1E64B8',
@@ -501,18 +502,22 @@ const styles = StyleSheet.create({
     },
     buttonContainer: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        width: '60%',
+        gap: 14,
+        marginTop: 20,
+        // justifyContent: 'space-around',
+        // width: '80%',
         // top: 10
     },
     confirmationButton: {
         backgroundColor: '#1E64B8',
         padding: 10,
+        paddingHorizontal: 28,
         borderRadius: 5,
-        width: 80,
+        // width: 80,
         height: 40,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        // marginRight: 14,
     },
     confirmationButtonText: {
         color: 'white',

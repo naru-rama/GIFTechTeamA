@@ -6,7 +6,11 @@ import VerticalLine from './VerticalLine';
 const Footer = () => {
     return (
         <View style={styles.footer}>
-            <Link href="himaIndex" asChild>
+            <Link href="himaIndex" asChild
+                style={{
+                    marginRight: 10,
+                }}
+            >
                 <TouchableOpacity style={styles.chip}>
                     <View style={styles.chipItem}>
                         <Text style={styles.emoji}>📔</Text>
@@ -15,7 +19,11 @@ const Footer = () => {
                 </TouchableOpacity>
             </Link>
 
-            <Link href="himaData" asChild>
+            <Link href="himaData" asChild
+                style={{
+                    marginRight: 22,
+                }}
+            >
                 <TouchableOpacity style={styles.chip}>
                     <View style={styles.chipItem}>
                         <Text style={styles.emoji}>🥱</Text>
@@ -23,10 +31,14 @@ const Footer = () => {
                     </View>
                 </TouchableOpacity>
             </Link>
-            
+
             <VerticalLine />
 
-            <Link href="himaSettings" asChild>
+            <Link href="himaSettings" asChild
+                style={{
+                    marginLeft: 20,
+                }}
+            >
                 <TouchableOpacity style={styles.button}>
                     <Text style={styles.emoji}>💬</Text>
                     <Text style={styles.text}>通知設定</Text>
@@ -47,9 +59,11 @@ const styles = StyleSheet.create({
     footer: {
         flexDirection: 'row',
         backgroundColor: '#2A8967',
-        justifyContent: 'space-around',
-        paddingVertical: 20,
-        paddingHorizontal: 10,
+        // justifyContent: 'space-around',
+        paddingVertical: 16,
+        // paddingHorizontal: 10,
+        paddingLeft: 22,
+        paddingBottom: 30,
         flex: 1, // 100%の高さを取得
         alignItems: 'center',
     },
@@ -67,7 +81,11 @@ const styles = StyleSheet.create({
     },
     chip: {
         backgroundColor: '#287A5C',
-        padding: 5,
+        // padding: 5,
+        paddingTop: 6,
+        paddingRight: 12,
+        paddingBottom: 5,
+        paddingLeft: 9,
         borderRadius: 64,
         flexDirection: 'row',
         alignItems: 'center',
@@ -77,8 +95,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingLeft: 9,
-        paddingRight: 12,
+        // paddingLeft: 9,
+        // paddingRight: 12,
     },
     spacer: {
         height: 70, // 任意の高さ

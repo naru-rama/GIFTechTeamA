@@ -5,6 +5,7 @@ import {
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { addHimaItem, getAllHimaItems, completeHimaItem } from '../actions/HimaActions';
+import { useLocalSearchParams } from 'expo-router';
 
 export default function himaIndex() {
     const { id } = useLocalSearchParams();

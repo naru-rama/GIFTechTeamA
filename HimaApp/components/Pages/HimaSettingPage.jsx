@@ -52,7 +52,7 @@ export default function HimaSettingPage() {
                     <Text style={styles.backButtonText}>戻る</Text>
                 </TouchableOpacity>
                 <Image
-                    source={require('../../assets/images/logo.png')}
+                    source={require('../../assets/images/title-push@x3.png')}
                     style={styles.topImage}
                 />
                 <View style={styles.registrationCountContainer}>
@@ -430,10 +430,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topImage: {
-        width: 120,
-        // height: 50,
-        // marginTop: 70,
+        width: 250,
+        height: 120,
         resizeMode: 'contain',
+        marginRight: 0,
+        height: 80,
     },
     topBar: {
         flexDirection: 'row',
@@ -444,14 +445,11 @@ const styles = StyleSheet.create({
         marginTop: 50,
     },
     backButton: {
-        padding: 55,
         paddingTop: 0,
         paddingBottom: 0,
-        marginRight: 0,
-        // 高さ中央揃え
+        marginLeft: 100,
         alignItems: 'center',
     },
-
     backButtonText: {
         color: '#F2D0FF',
         fontSize: 18,

@@ -174,57 +174,78 @@ export default function HimaSettingPage() {
                     }]}
                 >
 
-                    <SelectList
-                        setSelected={(val) => setSelectedFirst(val)}
-                        data={dataFirst}
-                        save="value"
-                        defaultOption={dataFirst[0]}
-                        boxStyles={styles.selectList}
-                        inputStyles={styles.selectList}
-                        dropdownStyles={styles.selectList}
-                        dropdownItemStyles={styles.selectList}
-                        dropdownTextStyles={styles.selectList}
-                        searchPlaceholder
-                        searchicon={<Text></Text>}
-                        arrowicon={<FontAwesome name="chevron-down" color={'#1E64B8'} style={{
-                            right: -10,
-                        }} />}
+                    <TouchableOpacity
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            backgroundColor: '#F3D0FF',
+                            padding: 10,
+                            borderRadius: 10,
+                            width: 95,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                // marginRight: 4,
+                                color: '#1E64B8',
+                                left: 0,
 
-                    />
-                    <SelectList
-                        setSelected={(val) => setSelectedSecond(val)}
-                        data={dataSecond}
-                        save="value"
-                        defaultOption={dataSecond[0]}
-                        boxStyles={styles.selectList}
-                        inputStyles={styles.selectList}
-                        dropdownStyles={styles.selectList}
-                        dropdownItemStyles={styles.selectList}
-                        dropdownTextStyles={styles.selectList}
-                        searchPlaceholder
-                        searchicon={<Text></Text>}
-                        arrowicon={<FontAwesome name="chevron-down" color={'#1E64B8'} style={{
+                            }}
+                        >
+                            前回の
+                        </Text>
+                        <FontAwesome name="chevron-down" color={'#1E64B8'} style={{
+                            right: -20,
+                        }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            backgroundColor: '#F3D0FF',
+                            padding: 10,
+                            borderRadius: 10,
+                            width: 95,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                // marginRight: 4,
+                                color: '#1E64B8',
+                                left: 0,
+
+                            }}
+                        >
+                            通知から
+                        </Text>
+                        <FontAwesome name="chevron-down" color={'#1E64B8'} style={{
                             right: -10,
-                        }} />}
-                    />
-                    <SelectList
-                        setSelected={(val) => setSelectedThird(val)}
-                        data={dataThird}
-                        save="value"
-                        defaultOption={dataThird[0]}
-                        boxStyles={styles.selectList}
-                        inputStyles={styles.selectList}
-                        dropdownStyles={styles.selectList}
-                        dropdownItemStyles={styles.selectList}
-                        dropdownTextStyles={styles.selectList}
-                        searchPlaceholder
-                        searchicon={<Text></Text>}
-                        arrowicon={<FontAwesome name="chevron-down" color={'#1E64B8'} style={{
-                            // margin: 0,
-                            // padding: 0,
+                        }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            backgroundColor: '#F3D0FF',
+                            padding: 10,
+                            borderRadius: 10,
+                            width: 95,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                // marginRight: 4,
+                                color: '#1E64B8',
+                                left: 0,
+
+                            }}
+                        >
+                            30分以上
+                        </Text>
+                        <FontAwesome name="chevron-down" color={'#1E64B8'} style={{
                             right: -10,
-                        }} />}
-                    />
+                        }} />
+                    </TouchableOpacity>
                 </View>
                 <View
                     style={{

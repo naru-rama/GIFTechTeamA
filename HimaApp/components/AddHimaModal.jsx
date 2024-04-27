@@ -54,9 +54,12 @@ const AddHimaModal = ({ isVisible, onClose, onAdd }) => {
                             <TouchableOpacity
                                 style={styles.button}
                                 onPress={async () => {
-                                    await addHimaItem(inputText);
+                                    if (inputText.trim() !== '') {
+                                        await addHimaItem(inputText);
+                                        
+                                    }
                                     onAdd(inputText);
-                                    setInputText('');
+                                        setInputText('');
                                 }}
                             >
                                 <Text style={styles.textStyle}>OK</Text>

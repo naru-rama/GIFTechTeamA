@@ -4,7 +4,7 @@ import db from "../utils/firebase";
 export const getAllHimaItems = async () => {
     console.log("Getting data from himaItem actions");
 
-    const himaItemsQuery = query(collection(db, "himaItems"), orderBy("updatedAt", "asc"));
+    const himaItemsQuery = query(collection(db, "himaItems"), orderBy("createdAt", "asc"));
 
     const snap = await getDocs(himaItemsQuery);
     const items = [];

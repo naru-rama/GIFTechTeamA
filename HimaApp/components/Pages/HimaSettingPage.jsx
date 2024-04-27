@@ -53,7 +53,7 @@ export default function HimaSettingPage() {
                     <Text style={styles.backButtonText}>戻る</Text>
                 </TouchableOpacity>
                 <Image
-                    source={require('../../assets/images/logo.png')}
+                    source={require('../../assets/images/title-push@x3.png')}
                     style={styles.topImage}
                 />
                 <View style={styles.registrationCountContainer}>
@@ -175,57 +175,78 @@ export default function HimaSettingPage() {
                     }]}
                 >
 
-                    <SelectList
-                        setSelected={(val) => setSelectedFirst(val)}
-                        data={dataFirst}
-                        save="value"
-                        defaultOption={dataFirst[0]}
-                        boxStyles={styles.selectList}
-                        inputStyles={styles.selectList}
-                        dropdownStyles={styles.selectList}
-                        dropdownItemStyles={styles.selectList}
-                        dropdownTextStyles={styles.selectList}
-                        searchPlaceholder
-                        searchicon={<Text></Text>}
-                        arrowicon={<FontAwesome name="chevron-down" color={'#1E64B8'} style={{
-                            right: -10,
-                        }} />}
+                    <TouchableOpacity
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            backgroundColor: '#F3D0FF',
+                            padding: 10,
+                            borderRadius: 10,
+                            width: 95,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                // marginRight: 4,
+                                color: '#1E64B8',
+                                left: 0,
 
-                    />
-                    <SelectList
-                        setSelected={(val) => setSelectedSecond(val)}
-                        data={dataSecond}
-                        save="value"
-                        defaultOption={dataSecond[0]}
-                        boxStyles={styles.selectList}
-                        inputStyles={styles.selectList}
-                        dropdownStyles={styles.selectList}
-                        dropdownItemStyles={styles.selectList}
-                        dropdownTextStyles={styles.selectList}
-                        searchPlaceholder
-                        searchicon={<Text></Text>}
-                        arrowicon={<FontAwesome name="chevron-down" color={'#1E64B8'} style={{
+                            }}
+                        >
+                            前回の
+                        </Text>
+                        <FontAwesome name="chevron-down" color={'#1E64B8'} style={{
+                            right: -20,
+                        }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            backgroundColor: '#F3D0FF',
+                            padding: 10,
+                            borderRadius: 10,
+                            width: 95,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                // marginRight: 4,
+                                color: '#1E64B8',
+                                left: 0,
+
+                            }}
+                        >
+                            通知から
+                        </Text>
+                        <FontAwesome name="chevron-down" color={'#1E64B8'} style={{
                             right: -10,
-                        }} />}
-                    />
-                    <SelectList
-                        setSelected={(val) => setSelectedThird(val)}
-                        data={dataThird}
-                        save="value"
-                        defaultOption={dataThird[0]}
-                        boxStyles={styles.selectList}
-                        inputStyles={styles.selectList}
-                        dropdownStyles={styles.selectList}
-                        dropdownItemStyles={styles.selectList}
-                        dropdownTextStyles={styles.selectList}
-                        searchPlaceholder
-                        searchicon={<Text></Text>}
-                        arrowicon={<FontAwesome name="chevron-down" color={'#1E64B8'} style={{
-                            // margin: 0,
-                            // padding: 0,
+                        }} />
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            backgroundColor: '#F3D0FF',
+                            padding: 10,
+                            borderRadius: 10,
+                            width: 95,
+                        }}
+                    >
+                        <Text
+                            style={{
+                                // marginRight: 4,
+                                color: '#1E64B8',
+                                left: 0,
+
+                            }}
+                        >
+                            30分以上
+                        </Text>
+                        <FontAwesome name="chevron-down" color={'#1E64B8'} style={{
                             right: -10,
-                        }} />}
-                    />
+                        }} />
+                    </TouchableOpacity>
                 </View>
                 <View
                     style={{
@@ -414,10 +435,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topImage: {
-        width: 120,
-        // height: 50,
-        // marginTop: 70,
+        width: 250,
+        height: 120,
         resizeMode: 'contain',
+        marginRight: 0,
+        height: 80,
     },
     topBar: {
         flexDirection: 'row',
@@ -428,14 +450,11 @@ const styles = StyleSheet.create({
         marginTop: 50,
     },
     backButton: {
-        padding: 70,
         paddingTop: 0,
         paddingBottom: 0,
-        marginRight: 0,
-        // 高さ中央揃え
+        marginLeft: 100,
         alignItems: 'center',
     },
-
     backButtonText: {
         color: '#F2D0FF',
         fontSize: 18,

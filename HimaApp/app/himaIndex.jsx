@@ -253,12 +253,12 @@ export default function himaIndex() {
                     <Text style={styles.backButtonText}>戻る</Text>
                 </TouchableOpacity>
                 <Image
-                    source={require('../assets/images/logo.png')}
+                    source={require('../assets/images/title-list@x3.png')}
                     style={styles.topImage}
                 />
                 <View style={styles.registrationCountContainer}>
-                    <Text style={styles.registrationLabelText}>登録数</Text>
                     <Text style={styles.registrationCountText}>{himaItems.length}</Text>
+                    <Text style={styles.registrationLabelText}>登録数</Text>
                 </View>
             </View>
 
@@ -370,10 +370,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '100%',
         paddingHorizontal: 10,
-        marginTop: 20,
+        height: 180,
     },
     backButton: {
-        padding: 70,
+        padding: 0,
         marginRight: 0,
     },
     registrationText: {
@@ -388,7 +388,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     topImage: {
-        width: 120,
+        width: 250,
         height: 120,
         resizeMode: 'contain',
     },
@@ -446,7 +446,7 @@ const styles = StyleSheet.create({
     registrationCountContainer: {
         alignItems: 'center',
         justifyContent: 'center',
-        padding: 70,
+        padding: 0,
     },
     registrationLabelText: {
         color: '#F2D0FF',

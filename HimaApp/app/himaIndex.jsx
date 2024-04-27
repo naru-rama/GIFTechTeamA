@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
     StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Platform,
-    TouchableOpacity, Keyboard, Image, Modal, FlatList
+    TouchableOpacity, Keyboard, Image, Modal, FlatList, Animated
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { addHimaItem, getAllHimaItems } from '../actions/HimaActions';
@@ -12,8 +12,10 @@ export default function himaIndex() {
     const [selectedItem, setSelectedItem] = useState(null);
     const [isFocused, setIsFocused] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
+    const [showSpeechBubble, setShowSpeechBubble] = useState(false);
     const navigation = useNavigation();
     const flatListRef = useRef();
+    const fadeAnim = useRef(new Animated.Value(1)).current; 
 
     useEffect(() => {
         const fetchHimaItems = async () => {
@@ -28,6 +30,23 @@ export default function himaIndex() {
             flatListRef.current.scrollToEnd({ animated: true });
         }
     }, [showConfirmation]);
+    
+    useEffect(() => {
+        if (showSpeechBubble) {
+            const timer = setTimeout(() => {
+                Animated.timing(fadeAnim, {
+                    toValue: 0,
+                    duration: 500,
+                    useNativeDriver: true,
+                }).start(() => {
+                    setShowSpeechBubble(false);
+                    fadeAnim.setValue(1);
+                });
+            }, 2000);
+    
+            return () => clearTimeout(timer);
+        }
+    }, [showSpeechBubble]);
 
     const handleInputFocus = () => setIsFocused(true);
     const handleInputBlur = () => setIsFocused(false);
@@ -60,10 +79,20 @@ export default function himaIndex() {
             return '#55FFE0';
         } else if (count <= 20) {
             return '#FF9C64';
-        } else if (count <= 30) {
-            return '#FCFE5C';
         } else {
-            return '#FFFFFF';
+            return '#FCFE5C';
+        }
+    };
+
+    const setText = (doneCount) => {
+        if (doneCount == 1) {
+            return '🤓 ◯ ◯';
+        } else if (doneCount == 2) {
+            return '🤓 🤓 ◯';
+        } else if (doneCount == 3) {
+            return '🤓 🤓 🤓';
+        } else {
+            return '🤓 × ' + doneCount;
         }
     };
 
@@ -82,8 +111,13 @@ export default function himaIndex() {
                     {item.name}
                 </Text>
                 {isSelected && (
-                    <Text style={styles.itemTextSub}>タップされたよ</Text>
-                )}
+                <Text style={[
+                    styles.itemTextSub,
+                    { color: getColorByCount(item.doneCount) }
+                ]}>
+                    {setText(item.doneCount)}
+                </Text>
+            )}
             </TouchableOpacity>
         );
     };
@@ -114,12 +148,19 @@ export default function himaIndex() {
                         style={styles.okButton}
                         onPress={() => {
                             setShowConfirmation(false);
+                            setShowSpeechBubble(true);
                         }}
                     >
                         <Text style={styles.okButtonText}>OK</Text>
                     </TouchableOpacity>
                 </View>
             </Modal>
+            {showSpeechBubble && (
+                <Animated.Image
+                    source={require('../assets/images/speechbubble.png')}
+                    style={[styles.speechBubble, { opacity: fadeAnim }]}
+                />
+            )}
             <View style={styles.topBar}>
                 <TouchableOpacity onPress={handleBackPress} style={styles.backButton}>
                     <Text style={styles.backButtonText}>戻る</Text>
@@ -335,6 +376,13 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: 'white',
         textAlign: 'center',
-        marginTop: 10
+        marginTop: 10,
+        fontWeight: 'bold',
+    },
+    speechBubble: {
+        position: 'absolute',
+        bottom: 200,
+        width: 118,
+        height: 37,
     },
 });

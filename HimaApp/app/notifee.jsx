@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, Button } from 'react-native';
+import { View, Button, Text, StyleSheet } from 'react-native';
 import notifee from '@notifee/react-native';
+import messaging from '@react-native-firebase/messaging';
 
 export default function Notifee() {
     async function onDisplayNotification() {
@@ -21,6 +22,9 @@ export default function Notifee() {
         //     });
     }
     const setCategories = async function () {
+        // get token
+        const token = await messaging().getToken();
+        console.log(token);
         await notifee.requestPermission()
         const areYouFree = {
             id: 'are-you-free',
@@ -70,8 +74,26 @@ export default function Notifee() {
     }
 
     return (
-        <View>
-            <Button title="Display Notification" onPress={async () => setCategories()} />
+        <View style={styles.container}>
+            <Button title="Display Notification" onPress={async () => setCategories()} >
+            <Text>Display Notification</Text>
+            </Button>
         </View>
     );
 }
+const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    title: {
+      fontSize: 20,
+      fontWeight: 'bold',
+    },
+    separator: {
+      marginVertical: 30,
+      height: 1,
+      width: '80%',
+    },
+  });

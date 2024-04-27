@@ -13,6 +13,7 @@ import Notifee from './notifee';
 import Modal from "react-native-modal";
 import CompletedModal from '../components/CompletedModal';
 import { useLocalSearchParams } from 'expo-router';
+import TopBody from '../components/TopBody';
 
 
 export default function Home() {
@@ -53,7 +54,31 @@ export default function Home() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
+      <View
+        style={{
+          backgroundColor: '#1E64B8',
+          position: 'absolute',
+          top: 0,
+          zIndex: 99,
+          width: '100%',
+          // height: 50,
+        }}
+      >
+        <Text
+          style={{
+            color: 'white',
+            fontSize: 12,
+            fontWeight: 'bold',
+            // textAlign: 'center',
+            padding: 10,
+            paddingLeft: 20,
+            marginTop: 40
+          }}
+        >
+          📢やりたいヒマを見つけたらタップしてみてね👆
+        </Text>
+      </View>
+      {/* <Text style={styles.title}>Home</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
 
       <View style={styles.buttonWrap}>
@@ -64,7 +89,8 @@ export default function Home() {
       </View>
       <NewModuleButton />
       <Notifee />
-      <Button title="Show modal" onPress={toggleModal} />
+      <Button title="Show modal" onPress={toggleModal} /> */}
+      <TopBody />
 
       {/* ここからフッター */}
       <View

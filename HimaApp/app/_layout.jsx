@@ -3,11 +3,12 @@ import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native
 import { useFonts } from 'expo-font';
 import { Stack, Tabs } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
-import { AppState } from 'react-native';
+import { LogBox } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import notifee, { EventType } from '@notifee/react-native';
 import { useRouter } from "expo-router";
+import CompletedModal from '../components/CompletedModal';
 
 import { useEffect, useRef, useState } from 'react';
 
@@ -20,12 +21,12 @@ export {
 
 export const unstable_settings = {
     // Ensure that reloading on `/modal` keeps a back button present.
-    initialRouteName: 'home',
+    initialRouteName: 'index',
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
-
+LogBox.ignoreLogs(["Require cycle: node_modules/victory"]);
 
 
 export default function RootLayout() {
@@ -33,8 +34,14 @@ export default function RootLayout() {
         SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
         ...FontAwesome.font,
     });
+
+    const [isModalVisible, setModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setModalVisible(!isModalVisible);
+    };
     const router = useRouter();
-    
+
     const areYouFreeScenario = async (detail) => {
         switch (detail.pressAction.id) {
             case 'yes':
@@ -70,7 +77,7 @@ export default function RootLayout() {
                 break;
         }
     }
-    
+
     const messageScenario = async (type, detail, category) => {
         console.log('messageScenario', type, detail, category);
         switch (type) {
@@ -81,12 +88,13 @@ export default function RootLayout() {
                 if (category === 'summary') {
                     console.log('User pressed notification');
                     // move to home page
-                    router.push({
-                        pathname: 'home',
-                        params: {
-                            isCompletedModalVisible: true,
-                        },
-                    });
+                    // router.push({
+                    //     // pathname: 'index',
+                    //     params: {
+                    //         isCompletedModalVisible: true,
+                    //     },
+                    // });
+                    setModalVisible(true);
                 }
                 console.log('User pressed notification');
                 break;
@@ -112,15 +120,15 @@ export default function RootLayout() {
             messageScenario(type, detail, category);
             await notifee.cancelNotification(detail.notification.id);
         });
-        
-        notifee.onBackgroundEvent(async ({type, detail}) => {
+
+        notifee.onBackgroundEvent(async ({ type, detail }) => {
             console.log('Background event:', type, detail);
             const { notification, pressAction } = detail;
             const category = notification?.ios?.categoryId;
             if (category && category === 'response') return;
             messageScenario(type, detail, category);
             // Check if the user pressed the "Mark as read" action
-                // Remove the notification
+            // Remove the notification
             await notifee.cancelNotification(notification.id);
         });
     }, []);
@@ -197,10 +205,13 @@ export default function RootLayout() {
         return null;
     }
 
-    return <RootLayoutNav />;
+    return <RootLayoutNav
+        isModalVisible={isModalVisible}
+        toggleModal={toggleModal}
+    />;
 }
 
-function RootLayoutNav() {
+function RootLayoutNav({isModalVisible, toggleModal}) {
     const colorScheme = useColorScheme();
 
     return (
@@ -212,12 +223,14 @@ function RootLayoutNav() {
             >
 
                 {/* <Stack.Screen name="(tabs)" options={{ headerShown: false }} /> */}
-                <Stack.Screen name="home" options={{ headerShown: false }} />
+                <Stack.Screen name="index" options={{ headerShown: false }} />
                 <Stack.Screen name="himaData" />
                 <Stack.Screen name="himaIndex" />
                 <Stack.Screen name="setup" />
                 <Stack.Screen name="firebase" />
+                <Stack.Screen name="notifee" />
             </Stack>
+                <CompletedModal isVisible={isModalVisible} onClose={toggleModal} />
         </ThemeProvider>
     );
 }

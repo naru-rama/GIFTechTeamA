@@ -7,8 +7,10 @@ import { useNavigation } from '@react-navigation/native';
 import { addHimaItem, getAllHimaItems, completeHimaItem } from '../actions/HimaActions';
 
 export default function himaIndex() {
+    const { id } = useLocalSearchParams();
     const [inputText, setInputText] = useState('');
     const [himaItems, setHimaItems] = useState([]);
+    const [scrollHimaItems, setScrollHimaItems] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
     const [isFocused, setIsFocused] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
@@ -18,13 +20,30 @@ export default function himaIndex() {
     const flatListRef = useRef();
     const fadeAnim = useRef(new Animated.Value(1)).current;
 
+
     useEffect(() => {
         const fetchHimaItems = async () => {
             const items = await getAllHimaItems();
             setHimaItems(items);
+            setScrollHimaItems(items);
         };
         fetchHimaItems();
     }, []);
+
+    useEffect(() => {
+        if (id) {
+            // 該当のIDのアイテムのindexを取得
+            const index = scrollHimaItems.findIndex(item => item.id === id);
+            // if (index == -1) {
+            //     console.log('Not found');
+            //     return;
+            // };
+            flatListRef.current?.scrollToEnd({
+                index: index,
+                viewPosition: 0.5,
+            });
+        }
+    }, [id]);
 
     useEffect(() => {
         if (!showConfirmation && himaItems.length > 0 && flatListRef.current) {
@@ -64,6 +83,7 @@ export default function himaIndex() {
             await addHimaItem(inputText.trim());
             const items = await getAllHimaItems();
             setHimaItems(items);
+            setScrollHimaItems(items);
             setShowConfirmation(true);
         }
         clearInput();
@@ -148,7 +168,7 @@ export default function himaIndex() {
             </TouchableOpacity>
         );
     };
-    
+
     const handleScroll = () => {
         setSelectedItem(null);
     };
@@ -205,11 +225,20 @@ export default function himaIndex() {
             <View style={styles.inner}>
                 <FlatList
                     ref={flatListRef}
-                    data={himaItems}
+                    data={scrollHimaItems}
                     renderItem={renderItem}
-                    keyExtractor={(item, index) => index.toString()}
+                    keyExtractor={(item, index) => index}
                     style={styles.list}
                     onScroll={handleScroll}
+                    // onEndReached={() => {
+                    //     console.log('onEndReached');
+                    //     setScrollHimaItems(prevItems => [...prevItems, ...himaItems]);
+                    // }}
+                    // onEndReachedThreshold={1}
+                    // onStartReached={() => {
+                    //     setScrollHimaItems(prevItems => [...himaItems, ...prevItems]);
+                    //     }
+                    // }
                 />
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                 <View style={styles.inputContainer}>
@@ -377,8 +406,8 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
     },
-    picker: { 
-        height: 400, 
+    picker: {
+        height: 400,
         width: 400,
     },
     chipItem: {

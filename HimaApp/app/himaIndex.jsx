@@ -9,6 +9,7 @@ import { useLocalSearchParams } from 'expo-router';
 
 export default function himaIndex() {
     const { id } = useLocalSearchParams();
+    const [isFirstRender, setIsFirstRender] = useState(true);
     const [inputText, setInputText] = useState('');
     const [himaItems, setHimaItems] = useState([]);
     const [itemHeightList, setItemHeightList] = useState([]);
@@ -34,31 +35,21 @@ export default function himaIndex() {
     useEffect(() => {
         const fetchHimaItems = async () => {
             const items = await getAllHimaItems();
+            console.log('items', items);
             setHimaItems(items);
-
-
         };
         fetchHimaItems();
     }, []);
 
     useEffect(() => {
-        console.log('himaItems', himaItems.length);
-        console.log('itemHeightList', itemHeightList);
         if (himaItems.length == 0 || (himaItems.length != itemHeightList.length)) return;
         if (id) {
-            console.log('id', id);
             const index = himaItems.findIndex(item => item.id === id);
-            console.log('index', index);
-            // // const offset = getItemOffset(index);
-            // // // Item全体の高さを取得
-            // // const totalHeight = itemHeightList.reduce((a, c) => a + c, 0);
-            // // console.log('totalHeight', totalHeight);
-            // // console.log('offset', offset);
-
+            setSelectedItem(himaItems[index]);
             flatListRef.current?.scrollToIndex({
                 index: index,
-                viewPosition: 0.5,
-                animated: true,
+                    viewPosition: 0,
+                    animated: true,
             });
         }
     }, [itemHeightList]);
@@ -155,19 +146,11 @@ export default function himaIndex() {
         const isSelected = selectedItem && (selectedItem.id === item.id);
 
         return (
-            <TouchableOpacity
-                onPress={() => {
-                    setSelectedItem(item);
-                    setHideConfirmationUI(false);
-                }}
-                style={styles.item}
-                onLayout={obj => {
-                    const height = obj.nativeEvent?.layout?.height;
-                    if (!height) return;
-
-                    setItemHeightList((prevData) => {
-                        return [...prevData, height];
-                    });
+            <View
+                style={{
+                    width: '100%',
+                    // justifyContent: ',
+                    alignItems: 'center',
                 }}
             >
                 {isSelected && !hideConfirmationUI && (
@@ -189,25 +172,43 @@ export default function himaIndex() {
                         </View>
                     </ImageBackground>
                 )}
-                <Text style={[
-                    styles.itemText,
-                    { color: isSelected ? getColorByCount(item.doneCount) : '#F2D0FF' }
-                ]}>
-                    {item.name}
-                </Text>
-                {isSelected && (
+                <TouchableOpacity
+                    onPress={() => {
+                        setSelectedItem(item);
+                        setHideConfirmationUI(false);
+                    }}
+                    style={styles.item}
+                    onLayout={obj => {
+                        const height = obj.nativeEvent?.layout?.height;
+                        if (!height) return;
+
+                        setItemHeightList((prevData) => {
+                            return [...prevData, height];
+                        });
+                    }}
+                >
                     <Text style={[
-                        styles.itemTextSub,
-                        { color: getColorByCount(item.doneCount) }
+                        styles.itemText,
+                        { color: isSelected ? getColorByCount(item.doneCount) : '#F2D0FF' }
                     ]}>
-                        {setText(item.doneCount)}
+                        {item.name}
                     </Text>
-                )}
-            </TouchableOpacity>
+                    {isSelected && (
+                        <Text style={[
+                            styles.itemTextSub,
+                            { color: getColorByCount(item.doneCount) }
+                        ]}>
+                            {setText(item.doneCount)}
+                        </Text>
+                    )}
+                </TouchableOpacity>
+            </View>
         );
     };
 
     const handleScroll = () => {
+        if (isFirstRender) return;
+        console.log('scroll');
         setSelectedItem(null);
     };
 
@@ -273,6 +274,9 @@ export default function himaIndex() {
                         offset: getItemOffset(index),
                         index,
                     })}
+                    onMomentumScrollEnd={() => {
+                        setIsFirstRender(false);
+                    }}
                 // getItemLayout={(data, index) => (
                 //     { length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index }
                 // )}
@@ -431,6 +435,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     item: {
+        position: 'relative',
         fontSize: 30,
         height: 30,
         top: 0,
@@ -497,7 +502,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         width: '60%',
-        top: 10
+        // top: 10
     },
     confirmationButton: {
         backgroundColor: '#1E64B8',

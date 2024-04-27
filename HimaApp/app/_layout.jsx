@@ -227,6 +227,7 @@ function RootLayoutNav({isModalVisible, toggleModal}) {
                 <Stack.Screen name="himaData" />
                 <Stack.Screen name="himaIndex" />
                 <Stack.Screen name="setup" />
+                <Stack.Screen name="himaOldData" />
                 <Stack.Screen name="firebase" />
                 <Stack.Screen name="notifee" />
             </Stack>

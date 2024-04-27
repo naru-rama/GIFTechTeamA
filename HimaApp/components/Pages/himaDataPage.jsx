@@ -7,6 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 import { HimaChart } from '../HimaChart';
 // import { Button } from 'react-native-elements';
 import { HistoryButton } from '../HimaDataPage/HistoryButton';
+import { Link } from 'expo-router';
 
 export default function HimaDataPage() {
     const navigation = useNavigation();
@@ -118,7 +119,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         width: '100%',
         // paddingHorizontal: 10,
-        marginTop: 70,
+        marginTop: 50,
     },
     backButton: {
         padding: 70,

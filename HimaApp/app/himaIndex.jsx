@@ -11,7 +11,6 @@ export default function himaIndex() {
     const { id } = useLocalSearchParams();
     const [inputText, setInputText] = useState('');
     const [himaItems, setHimaItems] = useState([]);
-    const [scrollHimaItems, setScrollHimaItems] = useState([]);
     const [selectedItem, setSelectedItem] = useState(null);
     const [isFocused, setIsFocused] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
@@ -21,12 +20,10 @@ export default function himaIndex() {
     const flatListRef = useRef();
     const fadeAnim = useRef(new Animated.Value(1)).current;
 
-
     useEffect(() => {
         const fetchHimaItems = async () => {
             const items = await getAllHimaItems();
             setHimaItems(items);
-            setScrollHimaItems(items);
         };
         fetchHimaItems();
     }, []);
@@ -84,7 +81,6 @@ export default function himaIndex() {
             await addHimaItem(inputText.trim());
             const items = await getAllHimaItems();
             setHimaItems(items);
-            setScrollHimaItems(items);
             setShowConfirmation(true);
         }
         clearInput();
@@ -128,30 +124,29 @@ export default function himaIndex() {
             <TouchableOpacity
                 onPress={() => {
                     setSelectedItem(item);
-                    setHideConfirmationUI(false);
+                    setHideConfirmationUI(false);  // Resetting when another item is selected
                 }}
                 style={styles.item}
             >
                 {isSelected && !hideConfirmationUI && (
                 <ImageBackground source={require('../assets/images/confirmationbubble.png')} style={styles.image}>
                     <View style={styles.buttonContainer}>
-                        <TouchableOpacity 
-                            style={styles.confirmationButton} 
-                            onPress={async () => {
-                                await completeHimaItem(item.id);
-                                const updatedItems = await getAllHimaItems();
-                                setHimaItems(updatedItems);
-                                setHideConfirmationUI(true);
-                            }}>
-                            <Text style={styles.confirmationButtonText2}>OK🥱</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.confirmationButton} onPress={() => setHideConfirmationUI(true)}>
-                            <Text style={styles.confirmationButtonText2}>NO😎</Text>
-                        </TouchableOpacity>
+                    <TouchableOpacity 
+                        style={styles.confirmationButton} 
+                        onPress={async () => {
+                            await completeHimaItem(item.id);
+                            const updatedItems = await getAllHimaItems();
+                            setHimaItems(updatedItems);
+                            setHideConfirmationUI(true);
+                        }}>
+                        <Text style={styles.confirmationButtonText}>OK🥱</Text>
+                    </TouchableOpacity>
+                      <TouchableOpacity style={styles.confirmationButton} onPress={() => setHideConfirmationUI(true)}>
+                        <Text style={styles.confirmationButtonText}>NO😎</Text>
+                      </TouchableOpacity>
                     </View>
-                </ImageBackground>
-            )}
-
+                  </ImageBackground>
+                )}
                 <Text style={[
                     styles.itemText,
                     { color: isSelected ? getColorByCount(item.doneCount) : '#F2D0FF' }
@@ -169,7 +164,7 @@ export default function himaIndex() {
             </TouchableOpacity>
         );
     };
-
+    
     const handleScroll = () => {
         setSelectedItem(null);
     };
@@ -226,20 +221,11 @@ export default function himaIndex() {
             <View style={styles.inner}>
                 <FlatList
                     ref={flatListRef}
-                    data={scrollHimaItems}
+                    data={himaItems}
                     renderItem={renderItem}
-                    keyExtractor={(item, index) => index}
+                    keyExtractor={(item, index) => index.toString()}
                     style={styles.list}
                     onScroll={handleScroll}
-                    // onEndReached={() => {
-                    //     console.log('onEndReached');
-                    //     setScrollHimaItems(prevItems => [...prevItems, ...himaItems]);
-                    // }}
-                    // onEndReachedThreshold={1}
-                    // onStartReached={() => {
-                    //     setScrollHimaItems(prevItems => [...himaItems, ...prevItems]);
-                    //     }
-                    // }
                 />
                 <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
                 <View style={styles.inputContainer}>
@@ -407,8 +393,8 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
     },
-    picker: {
-        height: 400,
+    picker: { 
+        height: 400, 
         width: 400,
     },
     chipItem: {
@@ -463,7 +449,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
       },
-      confirmationButtonText2: {
+      confirmationButtonText: {
         color: 'white',
         fontSize: 16,
         fontWeight: 'bold'

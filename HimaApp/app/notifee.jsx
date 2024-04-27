@@ -75,7 +75,7 @@ export const setCategories = async function () {
             {
                 id: 'yes',
                 title: 'ヒマ🥱',
-                foreground: true,
+                foreground: false,
             },
             {
                 id: 'check-others',

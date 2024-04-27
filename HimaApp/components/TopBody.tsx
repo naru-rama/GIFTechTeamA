@@ -170,10 +170,8 @@ const TopBody = ({ }) => {
             }}>
                 {/* <Text style={styles.fabText}>＋</Text> */}
                 <Image
-                    source={require('../assets/images/AddHimaImage.png')}
-                    style={{
-
-                    }}
+                    source={require('../assets/images/top-bt@x3.png')}
+                    style={styles.image}
                 />
             </TouchableOpacity>
             <AddHimaModal
@@ -245,6 +243,11 @@ const styles = StyleSheet.create({
         color: '#000',
         fontWeight: 'bold',
     },
+    image: {
+        width: 400,
+        height: 100,
+        resizeMode: 'contain',
+    }
 });
 
 export default TopBody;

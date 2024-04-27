@@ -73,7 +73,7 @@ export const setCategories = async function () {
         id: 'has-action',
         actions: [
             {
-                id: 'do-action',
+                id: 'yes',
                 title: 'ヒマ🥱',
                 foreground: true,
             },
@@ -83,7 +83,7 @@ export const setCategories = async function () {
                 foreground: true,
             },
             {
-                id: 'soso',
+                id: 'yes',
                 title: 'ヒマだし何もしない🥱',
                 foreground: false,
             },

@@ -26,7 +26,7 @@ export default function HimaOldDataPage() {
                     <Text style={styles.backButtonText}>戻る</Text>
                 </TouchableOpacity>
                 <Image
-                    source={require('../../assets/images/logo.png')}
+                    source={require('../../assets/images/title-archive@x3.png')}
                     style={styles.topImage}
                 />
                 <View style={styles.registrationCountContainer}>
@@ -50,10 +50,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     topImage: {
-        width: 120,
-        // height: 50,
-        // marginTop: 70,
+        width: 220,
+        height: 120,
         resizeMode: 'contain',
+        marginRight: 0,
     },
     topBar: {
         flexDirection: 'row',
@@ -62,13 +62,13 @@ const styles = StyleSheet.create({
         width: '100%',
         // paddingHorizontal: 10,
         marginTop: 50,
+        height: 80,
     },
     backButton: {
-        padding: 70,
         paddingTop: 0,
         paddingBottom: 0,
-        marginRight: 0,
-        // 高さ中央揃え
+        marginLeft: 80,
+        marginRight: 20,
         alignItems: 'center',
     },
 

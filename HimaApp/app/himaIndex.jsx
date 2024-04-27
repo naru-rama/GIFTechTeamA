@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import {
     StyleSheet, Text, View, TextInput, KeyboardAvoidingView, Platform,
-    TouchableOpacity, Keyboard, Image, Modal, FlatList, Animated
+    TouchableOpacity, Keyboard, Image, Modal, FlatList, Animated, ImageBackground, Button
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { addHimaItem, getAllHimaItems } from '../actions/HimaActions';
+import { addHimaItem, getAllHimaItems, completeHimaItem } from '../actions/HimaActions';
 
 export default function himaIndex() {
     const [inputText, setInputText] = useState('');
@@ -13,9 +13,10 @@ export default function himaIndex() {
     const [isFocused, setIsFocused] = useState(false);
     const [showConfirmation, setShowConfirmation] = useState(false);
     const [showSpeechBubble, setShowSpeechBubble] = useState(false);
+    const [hideConfirmationUI, setHideConfirmationUI] = useState(false);
     const navigation = useNavigation();
     const flatListRef = useRef();
-    const fadeAnim = useRef(new Animated.Value(1)).current; 
+    const fadeAnim = useRef(new Animated.Value(1)).current;
 
     useEffect(() => {
         const fetchHimaItems = async () => {
@@ -101,12 +102,35 @@ export default function himaIndex() {
 
     const renderItem = ({ item }) => {
         const isSelected = selectedItem && (selectedItem.id === item.id);
-
+    
         return (
             <TouchableOpacity
-                onPress={() => setSelectedItem(item)}
+                onPress={() => {
+                    setSelectedItem(item);
+                    setHideConfirmationUI(false);
+                }}
                 style={styles.item}
             >
+                {isSelected && !hideConfirmationUI && (
+                <ImageBackground source={require('../assets/images/confirmationbubble.png')} style={styles.image}>
+                    <View style={styles.buttonContainer}>
+                        <TouchableOpacity 
+                            style={styles.confirmationButton} 
+                            onPress={async () => {
+                                await completeHimaItem(item.id);
+                                const updatedItems = await getAllHimaItems();
+                                setHimaItems(updatedItems);
+                                setHideConfirmationUI(true);
+                            }}>
+                            <Text style={styles.confirmationButtonText2}>OK🥱</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity style={styles.confirmationButton} onPress={() => setHideConfirmationUI(true)}>
+                            <Text style={styles.confirmationButtonText2}>NO😎</Text>
+                        </TouchableOpacity>
+                    </View>
+                </ImageBackground>
+            )}
+
                 <Text style={[
                     styles.itemText,
                     { color: isSelected ? getColorByCount(item.doneCount) : '#F2D0FF' }
@@ -388,4 +412,30 @@ const styles = StyleSheet.create({
         width: 118,
         height: 37,
     },
+    image: {
+        width: 274,
+        height: 107,
+        justifyContent: 'center',
+        alignItems: 'center'
+      },
+      buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        width: '60%',
+        top: 10
+      },
+      confirmationButton: {
+        backgroundColor: '#1E64B8',
+        padding: 10,
+        borderRadius: 5,
+        width: 80,
+        height: 40,
+        alignItems: 'center',
+        justifyContent: 'center'
+      },
+      confirmationButtonText2: {
+        color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold'
+      }
 });

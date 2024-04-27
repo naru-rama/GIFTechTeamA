@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, Modal, TouchableOpacity, StyleSheet, TextInput, KeyboardAvoidingView } from 'react-native';
+import { View, Text, Modal, TouchableOpacity, StyleSheet, TextInput, KeyboardAvoidingView, Image } from 'react-native';
 import { addHimaItem } from '@/actions/HimaActions';
 
 const AddHimaModal = ({ isVisible, onClose, onAdd }) => {
@@ -41,16 +41,22 @@ const AddHimaModal = ({ isVisible, onClose, onAdd }) => {
                 >
                     <View style={styles.modalView}>
                         <View>
-                            <Text style={styles.modalTitle}>ヒマを追加</Text>
+                            <Image
+                                source={require('../assets/images/top-textbox-title@x3.png')}
+                                style={styles.addImage}
+                            />
                             <TextInput
                                 ref={inputRef}
                                 style={styles.modalTextInput}
                                 onChangeText={setInputText}
                                 value={inputText}
-                                // placeholder="👉ここに入力してね👈"
                                 placeholderTextColor="#F3D0FF"
                                 selectionColor="#F3D0FF"
+                                multiline={true}  // 複数行入力を有効に
+                                numberOfLines={4} // 表示行数を4行に設定 (オプショナル)
+                                textAlignVertical="top" // テキストを上揃えに
                             />
+
                             <TouchableOpacity
                                 style={styles.button}
                                 onPress={async () => {
@@ -100,16 +106,9 @@ const styles = StyleSheet.create({
         margin: 20,
         backgroundColor: "#3F7BC3",
         borderRadius: 70,
-        paddingTop: 70,
+        paddingTop: 50,
         paddingBottom: 30,
         alignItems: "center",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 2
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 4,
         elevation: 5,
         width: '90%',
     },
@@ -131,16 +130,18 @@ const styles = StyleSheet.create({
         backgroundColor: "#1E64B8",
         width: 150,
         height: 50,
+        alignSelf: 'center',
         justifyContent: 'center',
-    },
+        alignItems: 'center'
+    },    
     textStyle: {
         color: "#F3D0FF",
         fontWeight: "bold",
-        textAlign: "center"
+        textAlign: "center",
     },
     modalTextInput: {
-        height: 40, // 適切な高さに調整
-        width: '100%', // モーダルの幅に合わせる
+        height: 50, // 適切な高さに調整
+        width: 200, // モーダルの幅に合わせる
         // borderColor: 'gray', // 枠線の色
         // borderWidth: 1, // 枠線の幅
         padding: 10, // 内側のパディング
@@ -152,6 +153,15 @@ const styles = StyleSheet.create({
         // placeholder の文字の色
         color: '#F3D0FF',
         // カーソルの色
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
+    addImage: {
+        width: 150,
+        height: 120,
+        resizeMode: 'contain',
+        height: 80,
+        alignSelf: 'center',
     },
 });
 

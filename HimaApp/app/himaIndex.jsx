@@ -85,7 +85,10 @@ export default function himaIndex() {
     };
 
     const setText = (doneCount) => {
-        if (doneCount == 1) {
+        if (doneCount == 0) {
+            return '◯ ◯ ◯';
+        }
+        else if (doneCount == 1) {
             return '🤓 ◯ ◯';
         } else if (doneCount == 2) {
             return '🤓 🤓 ◯';

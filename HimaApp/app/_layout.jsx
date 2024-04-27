@@ -47,7 +47,7 @@ export default function RootLayout() {
             case 'yes':
                 console.log('User pressed YES');
                 const notiId = await notifee.displayNotification({
-                    title: 'いいね〜',
+                    title: 'だよねー👍',
                     android: {
                         channelId: 'orders',
                     },
@@ -60,7 +60,7 @@ export default function RootLayout() {
             case 'soso':
                 console.log('User pressed 微妙');
                 await notifee.displayNotification({
-                    title: 'またね〜',
+                    title: 'また声かけるね〜🥱',
                     android: {
                         channelId: 'orders',
                     },
@@ -69,11 +69,28 @@ export default function RootLayout() {
             case 'no':
                 console.log('User pressed No');
                 await notifee.displayNotification({
-                    title: 'またね〜',
+                    title: 'ヒマになるまで忍びます🥷',
                     android: {
                         channelId: 'orders',
                     },
                 })
+                break;
+            case 'do-action':
+                console.log('do action selected');
+                console.log('data', detail);
+                const himaId = detail.notification.data.himaId;
+                console.log('got himaId', himaId);
+                router.push({
+                    pathname: 'himaIndex',
+                    params: {
+                        id: himaId,
+                    },
+                });
+                break;
+            case 'check-others':
+                router.push({
+                    pathname: 'himaIndex',
+                });
                 break;
         }
     }
@@ -103,6 +120,15 @@ export default function RootLayout() {
                 if (!category) break;
                 switch (category) {
                     case 'are-you-free':
+                        await areYouFreeScenario(detail);
+                        break;
+                    case 'robot-alert':
+                        await areYouFreeScenario(detail);
+                        break;
+                    case 'scenario-3':
+                        await areYouFreeScenario(detail);
+                        break;
+                    case 'has-action':
                         await areYouFreeScenario(detail);
                         break;
                 }

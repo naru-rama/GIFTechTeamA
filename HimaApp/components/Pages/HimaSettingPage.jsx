@@ -10,6 +10,7 @@ import { HimaChart } from '../HimaChart';
 import { HistoryButton } from '../HimaDataPage/HistoryButton';
 import { SelectList } from 'react-native-dropdown-select-list'
 import { FontAwesome } from '@expo/vector-icons';
+import  { setCategories } from '../../app/notifee';
 
 export default function HimaSettingPage() {
     const navigation = useNavigation();
@@ -379,6 +380,10 @@ export default function HimaSettingPage() {
                             alignItems: 'center',
                             borderRadius: 5,
                         }}
+                        onPress={() => {
+                            setCategories();
+                        }
+                        }
                     >
 
                         <View>

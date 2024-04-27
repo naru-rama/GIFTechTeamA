@@ -45,6 +45,7 @@ export default function himaIndex() {
         if (himaItems.length == 0 || (himaItems.length != itemHeightList.length)) return;
         if (id) {
             const index = himaItems.findIndex(item => item.id === id);
+            if (index == -1) return;
             setSelectedItem(himaItems[index]);
             flatListRef.current?.scrollToIndex({
                 index: index,

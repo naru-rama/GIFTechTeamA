@@ -148,6 +148,7 @@ export default function himaIndex() {
     const renderItem = ({ item }) => {
         const isSelected = selectedItem && (selectedItem.id === item.id);
         const isCreatedItem = createdItemId === item.id;
+        const isLastItem = himaItems[himaItems.length - 1].id === item.id;
 
         return (
             <View
@@ -155,6 +156,7 @@ export default function himaIndex() {
                     width: '100%',
                     // justifyContent: ',
                     alignItems: 'center',
+                    marginBottom: isLastItem ? 150 : 0,
                 }}
                 onLayout={obj => {
                         const height = obj.nativeEvent?.layout?.height;

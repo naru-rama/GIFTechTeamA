@@ -76,16 +76,17 @@ export default function RootLayout() {
                 })
                 break;
             case 'do-action':
-                console.log('do action selected');
-                console.log('data', detail);
-                const himaId = detail.notification.data.himaId;
-                console.log('got himaId', himaId);
-                router.push({
-                    pathname: 'himaIndex',
-                    params: {
-                        id: himaId,
+                console.log('User pressed YES');
+                const notiId3 = await notifee.displayNotification({
+                    title: 'いいね〜👍',
+                    android: {
+                        channelId: 'orders',
                     },
-                });
+                    ios: {
+                        categoryId: 'response',
+                    }
+                })
+                await notifee.cancelNotification(notiId3);
                 break;
             case 'check-others':
                 router.push({

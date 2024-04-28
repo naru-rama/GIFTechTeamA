@@ -73,8 +73,8 @@ export const setCategories = async function () {
         id: 'has-action',
         actions: [
             {
-                id: 'yes',
-                title: 'ヒマ🥱',
+                id: 'do-action',
+                title: 'やってみる🥱',
                 foreground: false,
             },
             {
